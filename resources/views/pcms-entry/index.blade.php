@@ -10,7 +10,13 @@
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $entry->purpose }}</h5>
+                        <h5 class="card-title">
+                            @foreach ($categoryList as $category)
+                                {{ $category->name }}@if(!$loop->last),
+                            @endif
+                            @endforeach
+                        </h5>
+                        <h5 class="card-subtitle">{{ $entry->purpose }}</h5>
                         
                         <p class="mb-1"><strong>Amount:</strong> {{ $entry->amount }}</p>
                         <p class="mb-1"><strong>Date:</strong> {{ $entry->date }}</p>
