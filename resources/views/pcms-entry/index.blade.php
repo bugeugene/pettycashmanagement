@@ -21,7 +21,7 @@
                                 </div>
                             @endif
                         </h5>
-                        <h5 class="card-subtitle">{{ $entry->purpose }}</h5>
+                        <h5 class="card-subtitle text-secondary">{{ $entry->purpose }}</h5>
                         
                         <p class="mb-1"><strong>Amount:</strong> {{ $entry->amount }}</p>
                         <p class="mb-1"><strong>Date:</strong> {{ $entry->date }}</p>
