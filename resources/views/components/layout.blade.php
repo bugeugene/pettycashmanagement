@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Petty Cash Management System</title>
+</head>
+<body>
+
+    @if (session('success'))
+        <div class="p-4 text-center bg-green-50 text-green-50 font-bold"> 
+            {{session('success')}}
+        </div>
+    @endif
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-cash-coin"></i>
+                    <span class="fw-bold">Petty Cash Management</span>
+                </a>
+
+                <div class="d-flex align-items-center gap-2">
+                    @guest
+                        <a href="{{url('/login')}}" class="btn btn-outline-light btn-sm">Log In</a>
+                    @endguest
+
+                    @auth
+                        {{-- Requester --}}
+                        @if(auth()->user()->role === 'Requester')
+                            <span>Hi there, {{ auth()->user()->name }}</span>
+                            <a href="{{url('/dashboard')}}" class="btn btn-light btn-sm">Dashboard</a>
+                            <a href="{{url('/entries/add')}}" class="btn btn-light btn-sm">Create Entry</a>
+                        @endif
+
+                        {{-- Finance --}}
+                        @if(auth()->user()->role === 'Finance')
+                            <span>Hi there, {{ auth()->user()->name }}</span>
+                        @endif
+
+                        {{-- Admin --}}
+                        @if(auth()->user()->role === 'Admin')
+                            <span>Hi there, {{ auth()->user()->name }}</span>
+                            <a href="{{url('/users/add')}}" class="btn btn-outline-light btn-sm">Create New User</a>
+                        @endif
+                        
+                        <form action="{{url('/logout')}}" method="post" class="m-0">
+                        @csrf
+                            <button class="btn btn-danger btn-sm">Logout</button>
+                        </form>
+                    @endauth
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="container-lg">
+        {{ $slot }}
+    </main>
+
+</body>
+</html>
