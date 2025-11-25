@@ -10,7 +10,18 @@
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $entry->purpose }}</h5>
+                        <h5 class="card-title">
+                                @if(!empty($entry->categories))
+                                    @foreach ($entry->categories as $category)
+                                        {{ $category->name }}@if(!$loop->last),@endif
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-info text-center mt-2">
+                                        No Category.
+                                    </div>
+                                @endif
+                            </h5>
+                        <h5 class="card-subtitle text-secondary">{{ $entry->purpose }}</h5>
                         
                         <p class="mb-1"><strong>Amount:</strong> {{ $entry->amount }}</p>
                         <p class="mb-1"><strong>Date:</strong> {{ $entry->date }}</p>

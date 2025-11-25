@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PettyCashCategoriesModel;
 use App\Models\PettyCashEntriesModel;
 use Illuminate\Http\Request;
 
 class PettyCashEntriesController extends Controller
 {
     public function index(){
-        $model = new PettyCashEntriesModel();
-        $dbResults = $model -> getAllEntries();
+        $entriesmodel = new PettyCashEntriesModel();
+        $entriesResults = $entriesmodel -> getAllEntries();
+        $categoriesmodel = new PettyCashCategoriesModel();
+        
+        foreach($entriesResults as $entry){
+            $entry->categories = $categoriesmodel->getCategoriesByEntry($entry->entry_id);
+    }
         $data = [
-            'entryList' => $dbResults
+            'entryList' => $entriesResults
         ];
         return view('/pcms-entry/index', $data);
     }
@@ -63,7 +69,18 @@ class PettyCashEntriesController extends Controller
 
     public function destroy($entry_id){
         $model = new PettyCashEntriesModel();
-        $model -> setDestroyEntries($entry_id);
-        return redirect('/entries');
+        $entry = $model->getSpecificEntries($entry_id);
+
+        if (!$entry) {
+            return redirect('/entries')->with('error', 'Entry not found.');
+        }
+
+        if ($entry->status === 'Approved') {
+            return redirect('/entries')->with('error', 'Cannot delete approved transactions.');
+        }
+
+        $model->setDestroyEntries($entry_id);
+
+        return redirect('/entries')->with('success', 'Entry deleted.');
     }
 }

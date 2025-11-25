@@ -18,7 +18,8 @@ class PettyCashEntriesModel extends Model
     }
 
     public function getSpecificEntries($entry_id){
-        return DB::select('SELECT * FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+        $rows = DB::select('SELECT * FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+        return count($rows) > 0 ? $rows[0] : null;
     }
 
     public function setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status){
@@ -27,6 +28,6 @@ class PettyCashEntriesModel extends Model
     }
 
     public function setDestroyEntries($entry_id){
-        DB::delete('DELETE FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+        DB::update('UPDATE petty_cash_entries SET deleted_at = NOW() WHERE entry_id = ?', [$entry_id]);
     }
 }
