@@ -12,8 +12,10 @@ class PettyCashCategoriesModel extends Model
     }
 
     public function getCategoriesByEntry($entry_id){
-        return DB::select('SELECT c.* FROM petty_cash_categories c 
-        JOIN entry_category ec ON c.id = ec.category_id WHERE ec.entry_id = ?', [$entry_id]);
+        return DB::select('SELECT c.* FROM petty_cash_categories as c 
+        JOIN petty_cash_entries as e 
+        ON c.category_id = e.category_id 
+        WHERE e.entry_id = ?', [$entry_id]);
     }
 
 

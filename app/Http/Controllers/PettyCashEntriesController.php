@@ -12,11 +12,12 @@ class PettyCashEntriesController extends Controller
         $entriesmodel = new PettyCashEntriesModel();
         $entriesResults = $entriesmodel -> getAllEntries();
         $categoriesmodel = new PettyCashCategoriesModel();
-        $categoriesResults = $categoriesmodel -> getAllCategories();
-
+        
+        foreach($entriesResults as $entry){
+            $entry->categories = $categoriesmodel->getCategoriesByEntry($entry->entry_id);
+    }
         $data = [
-            'entryList' => $entriesResults,
-            'categoryList' => $categoriesResults
+            'entryList' => $entriesResults
         ];
         return view('/pcms-entry/index', $data);
     }

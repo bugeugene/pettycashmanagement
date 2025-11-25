@@ -11,10 +11,15 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">
-                            @foreach ($categoryList as $category)
-                                {{ $category->name }}@if(!$loop->last),
+                            @if(!empty($entry->categories))
+                                @foreach ($entry->categories as $category)
+                                    {{ $category->name }}@if(!$loop->last), @endif
+                                @endforeach
+                            @else
+                                <div class="alert alert-info text-center mt-2">
+                                    No Category.
+                                </div>
                             @endif
-                            @endforeach
                         </h5>
                         <h5 class="card-subtitle">{{ $entry->purpose }}</h5>
                         
