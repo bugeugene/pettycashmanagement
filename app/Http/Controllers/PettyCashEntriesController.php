@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PettyCashCategoriesModel;
 use App\Models\PettyCashEntriesModel;
 use Illuminate\Http\Request;
 
 class PettyCashEntriesController extends Controller
 {
     public function index(){
-        $model = new PettyCashEntriesModel();
-        $dbResults = $model -> getAllEntries();
+        $entriesmodel = new PettyCashEntriesModel();
+        $entriesResults = $entriesmodel -> getAllEntries();
+        $categoriesmodel = new PettyCashCategoriesModel();
+        $categoriesResults = $categoriesmodel -> getAllCategories();
+
         $data = [
-            'entryList' => $dbResults
+            'entryList' => $entriesResults,
+            'categoryList' => $categoriesResults
         ];
         return view('/pcms-entry/index', $data);
     }

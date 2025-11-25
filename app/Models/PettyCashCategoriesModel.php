@@ -11,6 +11,12 @@ class PettyCashCategoriesModel extends Model
         return DB::select('SELECT * FROM petty_cash_categories');
     }
 
+    public function getCategoriesByEntry($entry_id){
+        return DB::select('SELECT c.* FROM petty_cash_categories c 
+        JOIN entry_category ec ON c.id = ec.category_id WHERE ec.entry_id = ?', [$entry_id]);
+    }
+
+
     // public function setnewCategories($name, $description){
     //     DB::insert('INSERT INTO petty_cash_categories (name, description) VALUES (?,?)', [$name, $description]);      
     // }
