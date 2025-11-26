@@ -28,7 +28,8 @@ class PettyCashModel extends Model
     public function setnewUser($name, $username, $password, $email, $role){
         $hashPassword = Hash::make($password);
         
-        DB::insert('INSERT INTO users (name, username, password, email, role) VALUES (?, ?, ?, ?, ?)', [$name, $username, $password, $email, $role]);
+        DB::insert('INSERT INTO users (name, username, password, email, role) VALUES (?, ?, ?, ?, ?)',
+        [$name, $username, $password, $email, $role]);
         /*self::create([
             'name' => $name,
             'username' => $username,
