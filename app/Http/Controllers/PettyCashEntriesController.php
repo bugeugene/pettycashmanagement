@@ -39,11 +39,8 @@ class PettyCashEntriesController extends Controller
 
     public function edit($entry_id){
         $model = new PettyCashEntriesModel();
-        $dbResults = $model -> getSpecificEntries($entry_id);
-        $data = [
-            'entryList' => $dbResults
-        ];
-        return view('/pcms-entry/edit', $data);
+        $entry = $model->getSpecificEntries($entry_id);
+        return view('/pcms-entry/edit', ['entry'=>$entry]);
     }
 
     public function update($entry_id, Request $request){
@@ -62,7 +59,7 @@ class PettyCashEntriesController extends Controller
         $model = new PettyCashEntriesModel();
         $dbResults = $model -> getSpecificEntries($entry_id);
         $data = [
-            'entryList' => $dbResults
+            'entry' => $dbResults
         ];
         return view('/pcms-entry/delete', $data);
     }
@@ -75,7 +72,7 @@ class PettyCashEntriesController extends Controller
             return redirect('/entries')->with('error', 'Entry not found.');
         }
 
-        if ($entry->status === 'Approved') {
+        if (strcasecmp(trim($entry->status), 'Approved') === 0) {
             return redirect('/entries')->with('error', 'Cannot delete approved transactions.');
         }
 

@@ -28,6 +28,6 @@ class PettyCashEntriesModel extends Model
     }
 
     public function setDestroyEntries($entry_id){
-        DB::update('UPDATE petty_cash_entries SET deleted_at = NOW() WHERE entry_id = ?', [$entry_id]);
+        DB::delete('DELETE FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
     }
 }

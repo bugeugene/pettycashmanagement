@@ -5,6 +5,20 @@
             There are no entries available.
         </div>
     @else
+
+    <!-- Flash Messages -->
+    @if(session('error'))
+        <div class="alert alert-danger mb-2">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success mb-2">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row g-3 mt-2">
         @foreach ($entryList as $entry)
             <div class="col-md-4">
