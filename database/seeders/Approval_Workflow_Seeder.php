@@ -19,60 +19,54 @@ class Approval_Workflow_Seeder extends Seeder
             [
                 'entry_id' => 1,
                 'approver_id' => 2,
-                'status' => 'PENDING', 
                 'remarks' => 'Waiting for approval',
                 'created_at' => now()
             ],
             [
-                'entry_id' => 2, 'approver_id' => 5,
-                'status' => 'APPROVED',
+                'entry_id' => 2,
+                'approver_id' => 5,
                 'remarks' => 'Approved successfully',
                 'created_at' => now()
             ],
             [
-                'entry_id' => 3, 'approver_id' => 2,
-                'status' => 'REJECTED',
+                'entry_id' => 3,
+                'approver_id' => 2,
                 'remarks' => 'Receipts incomplete',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 4,
                 'approver_id' => 5,
-                'status' => 'PENDING', 
                 'remarks' => 'Reviewing request',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 5,
                 'approver_id' => 5,
-                'status' => 'APPROVED',
                 'remarks' => 'Confirmed',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 6,
                 'approver_id' => 2,
-                'status' => 'PENDING', 
                 'remarks' => 'Checking budget',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 7,
-                'approver_id' => 3,
-                'status' => 'APPROVED',
+                'approver_id' => 10,
                 'remarks' => 'All good',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 8,
-                'approver_id' => 6,
-                'status' => 'APPROVED',
+                'approver_id' => 7,
                 'remarks' => 'Released',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 9,
-                'approver_id' => 3,
+                'approver_id' => 2,
                 'status' => 'APPROVED',
                 'remarks' => 'Accepted',
                 'created_at' => now()

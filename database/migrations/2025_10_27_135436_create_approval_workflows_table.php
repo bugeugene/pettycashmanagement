@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('workflow_id'); //primary key
             $table->unsignedBigInteger('entry_id');
             $table->unsignedBigInteger('approver_id');
-
             $table->text('remarks')->nullable();
             $table->timestamp('created_at')->useCurrent();
 

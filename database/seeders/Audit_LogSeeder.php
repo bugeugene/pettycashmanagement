@@ -30,8 +30,8 @@ class Audit_LogSeeder extends Seeder
             ],
             [
                 'user_id' => 3,
-                'action_type' => 'DELETE',
-                'details' => 'Deleted record',
+                'action_type' => 'APPROVE',
+                'details' => 'Approved entry',
                 'time_stamp' => now()
             ],
             [
@@ -48,8 +48,8 @@ class Audit_LogSeeder extends Seeder
             ],
             [
                 'user_id' => 6,
-                'action_type' => 'LOGIN',
-                'details' => 'User signed in',
+                'action_type' => 'CREATE',
+                'details' => 'Create entry',
                 'time_stamp' => now()
             ],
             [
@@ -61,13 +61,13 @@ class Audit_LogSeeder extends Seeder
             [
                 'user_id' => 8,
                 'action_type' => 'CREATE',
-                'details' => 'Added new record',
+                'details' => 'Added new users',
                 'time_stamp' => now()
             ],
             [
                 'user_id' => 9,
-                'action_type' => 'UPDATE',
-                'details' => 'Edited reimbursement',
+                'action_type' => 'LOGIN',
+                'details' => 'User logged in',
                 'time_stamp' => now()
             ],
             [
