@@ -13,12 +13,12 @@ class PettyCashFundModel extends Model
         return count($rows) > 0 ? $rows[0] : null;
     }
 
-    public function updateBalance($fund_id, $new_balance)
-    {
-        DB::update("UPDATE petty_cash_funds 
-        SET current_balance = ?, last_update = NOW() 
-        WHERE fund_id = ?", [$new_balance, $fund_id]);
-    }
+    // public function updateBalance($fund_id, $new_balance)
+    // {
+    //     DB::update("UPDATE petty_cash_funds 
+    //     SET current_balance = ?, last_update = NOW() 
+    //     WHERE fund_id = ?", [$new_balance, $fund_id]);
+    // }
 
     public function replenishFund($fund_id, $amount)
     {

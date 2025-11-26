@@ -42,6 +42,7 @@
                         {{-- Finance --}}
                         @if(auth()->user()->role === 'Finance')
                             <span>Hi there, {{ auth()->user()->name }}</span>
+                            <a href="{{url('/funds')}}" class="btn btn-light btn-sm">Check Funds</a>
                         @endif
 
                         {{-- Admin --}}

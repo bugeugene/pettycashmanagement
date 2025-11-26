@@ -31,21 +31,21 @@ class PettyCashFundController extends Controller
         return redirect('/funds')->with('success', 'Fund replenished successfully!');
     }
 
-    public function edit($fund_id)
-    {
-        $model = new PettyCashFundModel();
-        $fund = $model->getFund();
+    // public function edit($fund_id)
+    // {
+    //     $model = new PettyCashFundModel();
+    //     $fund = $model->getFund();
 
-        return view('/pcms-fund/edit', ['fund' => $fund]);
-    }
+    //     return view('/pcms-fund/edit', ['fund' => $fund]);
+    // }
 
-    public function update(Request $request, $fund_id)
-    {
-        $new_balance = $request->input('current_balance');
-        $model = new PettyCashFundModel();
+    // public function update(Request $request, $fund_id)
+    // {
+    //     $new_balance = $request->input('current_balance');
+    //     $model = new PettyCashFundModel();
 
-        $model->updateBalance($fund_id, $new_balance);
+    //     $model->updateBalance($fund_id, $new_balance);
 
-        return redirect('/funds')->with('success', 'Fund updated!');
-    }
+    //     return redirect('/funds')->with('success', 'Fund updated!');
+    // }
 }
