@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id('audit_id'); //primary key
-            // $table->unsignedBigInteger('entry_id');
             $table->unsignedBigInteger('user_id');
             $table->string('action_type', 100);
             $table->text('details')->nullable();
             $table->timestamp('time_stamp')->useCurrent();
 
             // Relationships
-            // $table->foreign('entry_id')->references('entry_id')->on('petty_cash_entries');
             $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
@@ -31,7 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('audit_log', function(Blueprint $table){
-            // $table->dropForeign('audit_log_entry_id_foreign');
             $table->dropForeign('audit_log_user_id,foreign');
         });
         Schema::dropIfExists('audit_logs');
