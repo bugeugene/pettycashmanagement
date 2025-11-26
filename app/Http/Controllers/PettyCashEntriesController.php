@@ -7,6 +7,7 @@ use App\Models\PettyCashCategoriesModel;
 use App\Models\PettyCashEntriesModel;
 use App\Models\PettyCashFundModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PettyCashEntriesController extends Controller
@@ -74,7 +75,7 @@ class PettyCashEntriesController extends Controller
             $fundmodel->reduceBalance($amount);
 
             $log = new AuditLogModel();
-            $userId = auth()->user()->user_id;
+            $userId = Auth::user()->user_id;
 
             $log->insertLog(
                 $userId,
@@ -127,7 +128,7 @@ class PettyCashEntriesController extends Controller
             $model->setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status);
 
             $log = new AuditLogModel();
-            $userId = auth()->user()->user_id;
+            $userId = Auth::user()->user_id;
 
             $log->insertLog(
                 $userId,
@@ -191,7 +192,7 @@ class PettyCashEntriesController extends Controller
             $model->setDestroyEntries($entry_id);
 
             $log = new AuditLogModel();
-            $userId = auth()->user()->user_id;
+            $userId = Auth::user()->user_id;
 
             $log->insertLog(
                 $userId,
