@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PettyCashCategoriesController;
@@ -35,10 +36,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/users/{user_id}/delete', [PettyCashController::class, 'delete']);
     Route::get('/users/{user_id}/destroy', [PettyCashController::class, 'destroy']);
 
-    // Category
+    // Categories
     Route::get('/category', [PettyCashCategoriesController::class, 'index']);
 
-    // Entry
+    // Entries
     Route::get('/entries', [PettyCashEntriesController::class, 'index']);
     Route::get('/entries/add', [PettyCashEntriesController::class, 'add']);
     Route::post('/entries/create', [PettyCashEntriesController::class, 'create']);
@@ -56,9 +57,12 @@ Route::get('/dashboard', [DashboardController::class, 'landingpage']);
     // Route::get('/category/{category_id}/delete', [PettyCashCategoriesController::class, 'delete']);
     // Route::get('/category/{category_id}/destroy', [PettyCashCategoriesController::class, 'destroy']);
 
-    // FUND
+// Funds
 Route::get('/funds', [PettyCashFundController::class, 'index']);
 // Route::get('/funds/{fund_id}/edit', [PettyCashFundController::class, 'edit']);
 // Route::post('/funds/{fund_id}/update', [PettyCashFundController::class, 'update']);
 Route::get('/funds/replenish', [PettyCashFundController::class, 'replenishForm']);
 Route::post('/funds/replenish', [PettyCashFundController::class, 'replenish']);
+
+// Audit
+Route::get('/audit', [AuditLogController::class, 'index']);
