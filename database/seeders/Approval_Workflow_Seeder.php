@@ -49,13 +49,13 @@ class Approval_Workflow_Seeder extends Seeder
             [
                 'entry_id' => 6,
                 'approver_id' => 2,
-                'remarks' => 'Checking budget',
+                'remarks' => 'Reject request',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 7,
                 'approver_id' => 10,
-                'remarks' => 'All good',
+                'remarks' => 'All goods',
                 'created_at' => now()
             ],
             [
@@ -67,14 +67,12 @@ class Approval_Workflow_Seeder extends Seeder
             [
                 'entry_id' => 9,
                 'approver_id' => 2,
-                'status' => 'APPROVED',
                 'remarks' => 'Accepted',
                 'created_at' => now()
             ],
             [
                 'entry_id' => 10,
                 'approver_id' => 5,
-                'status' => 'PENDING', 
                 'remarks' => 'Awaiting signature',
                 'created_at' => now()
             ],
