@@ -35,8 +35,8 @@
                                     </div>
                                 @endif
                             </h5>
-                        <h5 class="card-subtitle text-secondary">{{ $entry->purpose }}</h5>
-                        
+                        {{-- <h5 class="card-subtitle text-secondary">{{ $entry->purpose }}</h5> --}}
+                        <p class="mb-1"><strong>Purpose:</strong> {{$entry->purpose}}</p>
                         <p class="mb-1"><strong>Amount:</strong> {{ $entry->amount }}</p>
                         <p class="mb-1"><strong>Date:</strong> {{ $entry->date }}</p>
                         <p class="mb-1"><strong>Entry Type:</strong> {{ $entry->entry_type }}</p>
