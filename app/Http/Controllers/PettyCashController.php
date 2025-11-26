@@ -29,7 +29,7 @@ class PettyCashController extends Controller
 
         $model = new PettyCashModel();
         $model -> setnewUser($name, $username, $password, $email, $role);
-        return redirect('/users')->with('success', 'User Created!');
+        return redirect('/users');
     }
 
     public function edit($user_id){

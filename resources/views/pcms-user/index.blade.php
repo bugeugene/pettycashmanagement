@@ -1,7 +1,13 @@
 <x-layout>
     
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
     @if (empty($userList))
-        <p>There is no data in the users</p>
+        <div class="alert alert-warning text-center">
+            There are no users in the system.
+        </div>
     @else
         <table style="text-align: center;" cellspacing="5" class="table table-striped table-hover">
             <thead>
