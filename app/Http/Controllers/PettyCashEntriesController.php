@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PettyCashCategoriesModel;
 use App\Models\PettyCashEntriesModel;
+use App\Models\PettyCashFundModel;
 use Illuminate\Http\Request;
 
 class PettyCashEntriesController extends Controller
@@ -26,14 +27,30 @@ class PettyCashEntriesController extends Controller
         return view('/pcms-entry/add');
     }
 
-    public function create(Request $request){
-        $amount = $request -> input('amount');
-        $purpose = $request -> input('purpose');
-        $date = $request -> input('date');
-        $entry_type = $request -> input('entry_type');
+    // public function create(Request $request){
+    //     $amount = $request -> input('amount');
+    //     $purpose = $request -> input('purpose');
+    //     $date = $request -> input('date');
+    //     $entry_type = $request -> input('entry_type');
 
+    //     $model = new PettyCashEntriesModel();
+    //     $model -> setnewEntries($amount, $purpose, $date, $entry_type);
+    //     return redirect('/entries');
+    // }
+    public function create(Request $request){
+        $amount = $request->input('amount');
+        $purpose = $request->input('purpose');
+        $date = $request->input('date');
+        $entry_type = $request->input('entry_type');
+
+        // 1. Insert entry
         $model = new PettyCashEntriesModel();
-        $model -> setnewEntries($amount, $purpose, $date, $entry_type);
+        $model->setnewEntries($amount, $purpose, $date, $entry_type);
+
+        // 2. Deduct from fund — RAW SQL
+        $fundmodel = new PettyCashFundModel();
+        $fundmodel->reduceBalance($amount);
+
         return redirect('/entries');
     }
 

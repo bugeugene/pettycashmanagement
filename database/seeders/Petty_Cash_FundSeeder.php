@@ -15,7 +15,7 @@ class Petty_Cash_FundSeeder extends Seeder
     {
         DB::table('petty_cash_funds')->insert([
             [
-                'current_balance' => 50000000.00,
+                'current_balance' => 500000.00,
                 'last_replenished_at' => now(),
                 'last_update' => now()
             ],
