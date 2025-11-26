@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/entries/{entry_id}/update', [PettyCashEntriesController::class, 'update']);
     Route::get('/entries/{entry_id}/delete', [PettyCashEntriesController::class, 'delete']);
     Route::get('/entries/{entry_id}/destroy', [PettyCashEntriesController::class, 'destroy']);
-});
+}); 
 
 Route::get('/dashboard', [DashboardController::class, 'landingpage']);
  // Route::get('/category/add', [PettyCashCategoriesController::class, 'add']);
