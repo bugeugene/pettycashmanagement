@@ -66,7 +66,7 @@ class PettyCashEntriesModel extends Model
             'date'         => $date,
             'entry_type'   => $entry_type,
             'created_by'   => $user_id,
-            'created_at'     => now()
+            'created_at'   => now()
         ]);
     }
 

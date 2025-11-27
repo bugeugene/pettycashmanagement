@@ -20,7 +20,7 @@ class SummaryController extends Controller
         $model = new PettyCashEntriesModel();
         $summary = $model->getSummaryByPeriod($request->start_date, $request->end_date);
 
-        return view('/pmcs-sum/report', [
+        return view('/pcms-sum/report', [
             'summary' => $summary,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date, ]);

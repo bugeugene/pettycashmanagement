@@ -20,7 +20,7 @@
                 <td>{{ $row->total_amount }}</td>
                 <td>{{ $row->total_transactions }}</td>
                 <td>{{ $row->entry_type }}</td>
-                <td>{{ $row->status }}</td>
+                <td>{{ ucfirst($row->status) }}</td>
             </tr>
             @endforeach
         </tbody>
