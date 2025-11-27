@@ -6,18 +6,21 @@
 <p><strong>Amount:</strong> {{ $entry->amount }}</p>
 <p><strong>Purpose:</strong> {{ $entry->purpose }}</p>
 
-<form method="POST" action="/approval/submit">
+<form action="{{url('/approval/submit')}}" method="post">
     @csrf
 
     <input type="hidden" name="entry_id" value="{{ $entry->entry_id }}">
 
     <label>Remarks:</label>
-    <textarea name="remarks"></textarea>
+    <textarea name="remarks" placeholder="write here..."></textarea>
 
     <br><br>
-    <button type="submit" name="status" value="approved">Approve</button>
-    <button type="submit" name="status" value="rejected">Reject</button>
+    <button type="submit" name="status" value="Approved" class="btn btn-success me-2">
+        Approve
+    </button>
+    <button type="submit" name="status" value="Rejected" class="btn btn-danger">
+        Reject
+    </button>
 </form>
-
 
 </x-layout>

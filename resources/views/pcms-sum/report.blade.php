@@ -20,7 +20,7 @@
                 <td>{{ $row->total_amount }}</td>
                 <td>{{ $row->total_transactions }}</td>
                 <td>{{ $row->entry_type }}</td>
-                <td>{{ ucfirst($row->status) }}</td>
+                <td>{{ $row->status }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -28,6 +28,5 @@
 
     <a href="{{url('/summary')}}" class="btn btn-secondary">Back</a>
 </div>
-
 
 </x-layout>

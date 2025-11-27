@@ -220,5 +220,4 @@ class PettyCashEntriesController extends Controller
             return redirect('/entries')->with('error', 'Error deleting entry.');
         }
     }
-
 }

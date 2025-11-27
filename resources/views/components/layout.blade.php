@@ -19,7 +19,7 @@
     @endif
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{{url('/entries')}}">
                     <i class="bi bi-cash-coin"></i>
@@ -32,14 +32,13 @@
                     @endguest
 
                     @auth
-                        {{-- Requester --}}
+
                         @if(auth()->user()->role === 'Requester')
                             <span>Hi there, {{ auth()->user()->name }}</span>
                             <a href="{{url('/dashboard')}}" class="btn btn-light btn-sm">Dashboard</a>
                             <a href="{{url('/entries/add')}}" class="btn btn-light btn-sm">Create Entry</a>
                         @endif
 
-                        {{-- Finance --}}
                         @if(auth()->user()->role === 'Finance')
                             <span>Hi there, {{ auth()->user()->name }}</span>
                             <a href="{{url('/funds')}}" class="btn btn-light btn-sm">Check Funds</a>
@@ -48,7 +47,6 @@
                             <a href="{{url('/summary')}}" class="btn btn-primary btn-sm">Generate Summary</a>
                         @endif
 
-                        {{-- Admin --}}
                         @if(auth()->user()->role === 'Admin')
                             <span>Hi there, {{ auth()->user()->name }}</span>
                             <a href="{{url('/users/add')}}" class="btn btn-outline-light btn-sm">Create New User</a>
@@ -60,6 +58,29 @@
                         </form>
                     @endauth
                 </div>
+            </div>
+        </nav> --}}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+            <div class="container">
+
+                <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/dashboard') }}">
+                    <i class="bi bi-cash-coin"></i>
+                    <span class="fw-bold">Petty Cash Management</span>
+                </a>
+
+                <div class="d-flex align-items-center gap-3">
+                    @auth
+                        <span class="text-white fw-bold">Hi, {{ auth()->user()->name }}</span>
+
+                        <a href="{{ url('/dashboard') }}" class="btn btn-light btn-sm">Dashboard</a>
+
+                        <form action="{{ url('/logout') }}" method="post" class="m-0">
+                            @csrf
+                            <button class="btn btn-danger btn-sm">Logout</button>
+                        </form>
+                    @endauth
+                </div>
+
             </div>
         </nav>
     </header>

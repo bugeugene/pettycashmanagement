@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    @if (empty($entryList))
+    @if ($entryList->isEmpty())
         <div class="alert alert-info text-center mt-2">
             There are no entries available.
         </div>

@@ -19,17 +19,12 @@ class PettyCashModel extends Model
         return DB::select('SELECT * FROM users');
         // return self::all();
     }
-    
-    // public function get_user_by_username($username){
-    //     $result = DB::select('SELECT * FROM users WHERE username = ?', [$username]);
-    //     return count($result) ? $result[0] : null;
-    // }
 
-    public function setnewUser($name, $username, $password, $email, $role){
+    public function setnewUser($name, $username, $password, $email, $role){       
         $hashPassword = Hash::make($password);
-        
+
         DB::insert('INSERT INTO users (name, username, password, email, role) VALUES (?, ?, ?, ?, ?)',
-        [$name, $username, $password, $email, $role]);
+        [$name, $username, $hashPassword, $email, $role]);
         /*self::create([
             'name' => $name,
             'username' => $username,

@@ -32,6 +32,19 @@ Route::middleware(['auth'])->group(function(){
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'landingpage']);
 
+    Route::get('/dashboard/requester', function () {
+        return view('/pcms-role/requester');
+    });
+
+    Route::get('/dashboard/finance', function () {
+        return view('/pcms-role/finance');
+    });
+
+    Route::get('/dashboard/admin', function () {
+        return view('/pcms-role/admin');
+    });
+
+
     // Users
     Route::get('/users', [PettyCashController::class, 'index']);
     Route::get('/users/add', [PettyCashController::class, 'add']);
@@ -78,5 +91,5 @@ Route::middleware(['auth'])->group(function(){
 // Route::get('/category/{category_id}/delete', [PettyCashCategoriesController::class, 'delete']);
 // Route::get('/category/{category_id}/destroy', [PettyCashCategoriesController::class, 'destroy']);
 
-// // Route::get('/funds/{fund_id}/edit', [PettyCashFundController::class, 'edit']);
+// Route::get('/funds/{fund_id}/edit', [PettyCashFundController::class, 'edit']);
 // Route::post('/funds/{fund_id}/update', [PettyCashFundController::class, 'update']);
