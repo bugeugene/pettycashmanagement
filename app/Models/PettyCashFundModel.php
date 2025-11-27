@@ -15,8 +15,7 @@ class PettyCashFundModel extends Model
 
     // public function updateBalance($fund_id, $new_balance)
     // {
-    //     DB::update("UPDATE petty_cash_funds 
-    //     SET current_balance = ?, last_update = NOW() 
+    //     DB::update("UPDATE petty_cash_funds SET current_balance = ?, last_update = NOW() 
     //     WHERE fund_id = ?", [$new_balance, $fund_id]);
     // }
 
@@ -29,7 +28,7 @@ class PettyCashFundModel extends Model
 
     public function reduceBalance($amount)
     {
-        DB::update("UPDATE petty_cash_funds 
+        DB::update("UPDATE petty_cash_funds
         SET current_balance = current_balance - ?, last_update = NOW() LIMIT 1", [$amount]);
     }
 }

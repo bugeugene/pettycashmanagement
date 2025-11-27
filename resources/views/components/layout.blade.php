@@ -21,7 +21,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="{{url('/entries')}}">
                     <i class="bi bi-cash-coin"></i>
                     <span class="fw-bold">Petty Cash Management</span>
                 </a>
@@ -43,6 +43,9 @@
                         @if(auth()->user()->role === 'Finance')
                             <span>Hi there, {{ auth()->user()->name }}</span>
                             <a href="{{url('/funds')}}" class="btn btn-light btn-sm">Check Funds</a>
+                            <a href="{{url('/audit')}}" class="btn btn-warning btn-sm">View History Log</a>
+                            <a href="{{url('/approval')}}"class="btn btn-secondary btn-sm">View Approval</a>
+                            <a href="{{url('/summary')}}" class="btn btn-primary btn-sm">Generate Summary</a>
                         @endif
 
                         {{-- Admin --}}

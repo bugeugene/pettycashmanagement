@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('entry_type')->default('Request');
             $table->unsignedBigInteger('created_by');
             $table->string('status')->default('Pending');
-            $table->unsignedBigInteger('finance_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -29,7 +28,6 @@ return new class extends Migration
             $table->foreign('requester_id')->references('user_id')->on('users');
             $table->foreign('created_by')->references('user_id')->on('users');
             $table->foreign('category_id')->references('category_id')->on('petty_cash_categories');
-            $table->foreign('finance_id')->references('user_id')->on('users');
         });
     }
 
@@ -42,7 +40,6 @@ return new class extends Migration
             $table->dropForeign('petty_cash_entries_requester_id_foreign');
             $table->dropForeign('petty_cash_entries_created_by_foreign');
             $table->dropForeign('petty_cash_entries_category_id_foreign');
-            $table->dropForeign('petty_cash_entries_finance_id_foreign');
         });
         Schema::dropIfExists('petty_cash_entries');
     }

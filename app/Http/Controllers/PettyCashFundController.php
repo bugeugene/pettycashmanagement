@@ -50,10 +50,7 @@ class PettyCashFundController extends Controller
             $user_id = Auth::user()->user_id;
 
             $log->insertLog(
-                $user_id,
-                0,                     
-                "REPLENISH FUND",
-                "Replenished fund by PHP {$amount}"
+                $user_id, 0, "REPLENISH FUND","Replenished fund by PHP {$amount}"
             );
 
             DB::commit();

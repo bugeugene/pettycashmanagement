@@ -26,9 +26,9 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             Petty_Cash_CategoriesSeeder::class,
             Petty_Cash_FundSeeder::class,
-            Petty_Cash_EntriesSeeder::class,
-            Approval_Workflow_Seeder::class,
-            Audit_LogSeeder::class,
+            // Petty_Cash_EntriesSeeder::class,
+            // Approval_Workflow_Seeder::class,
+            // Audit_LogSeeder::class,
         ]);
     }
 }
