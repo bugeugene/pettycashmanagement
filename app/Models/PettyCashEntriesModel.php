@@ -83,6 +83,13 @@ class PettyCashEntriesModel extends Model
         }
     }
 
+    public function setUpdateStatus($entry_id, $status){
+        DB::table('petty_cash_entries')
+            ->where('entry_id', $entry_id)
+            ->update(['status' => $status, 'updated_at' => now()]);
+    }
+
+
     public function setDestroyEntries($entry_id){
         $entry = $this->find($entry_id);
         if ($entry) {

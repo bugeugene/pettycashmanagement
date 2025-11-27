@@ -12,7 +12,7 @@
     <input type="hidden" name="entry_id" value="{{ $entry->entry_id }}">
 
     <label>Remarks:</label>
-    <textarea name="remarks" placeholder="write here..."></textarea>
+    <textarea name="remarks" placeholder="write here..." required>{{ old('remarks', $entry->remarks) }}</textarea>
 
     <br><br>
     <button type="submit" name="status" value="Approved" class="btn btn-success me-2">
