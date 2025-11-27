@@ -6,8 +6,9 @@
         @csrf
             <tr>
                 <td valign="middle"><label for="purpose">Purpose</label></td>
-                <!-- <td><textarea name="purpose" placeholder="write here..."></textarea></td> -->
-                <td><input type="text" name="purpose" id="" value="{{$entry -> purpose}}"></td>
+                <td>
+                    <textarea name="purpose" placeholder="write here...">{{$entry -> purpose}}</textarea>
+                    </td> 
             </tr>
             <tr>
                 <td><label for="amount">Amount</label></td>
@@ -19,7 +20,6 @@
             </tr>
             <tr>
                 <td><label for="entry_type">Entry Type</label></td>
-                {{-- <td><input type="text" name="entry_type" value="{{$entryList[0] -> entry_type}}" id=""></td> --}}
                 <td>
                     <select name="entry_type" id="">
                         <option value="Request" {{ $entry -> entry_type == 'Request' ? 'selected' : '' }}>Request</option>

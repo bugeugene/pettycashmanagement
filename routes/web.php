@@ -18,9 +18,6 @@ Route::get('/', function (){
 // Route::[resource]('/[uri]', function (){})
 // Route::[resource]('/[uri]', [[Controller Name Here]::class, '[Controller Method]'])
 
-// Route::get('/register', [AuthController::class, 'showRegister']);
-// Route::post('/register', [AuthController::class, 'register']);
-
 // Log In
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -43,7 +40,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard/admin', function () {
         return view('/pcms-role/admin');
     });
-
 
     // Users
     Route::get('/users', [PettyCashController::class, 'index']);
@@ -83,6 +79,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/summary', [SummaryController::class, 'generateSummary']);
 
 });
+
+// Route::get('/register', [AuthController::class, 'showRegister']);
+// Route::post('/register', [AuthController::class, 'register']);
 
 // Route::get('/category/add', [PettyCashCategoriesController::class, 'add']);
 // Route::post('/category/create', [PettyCashCategoriesController::class, 'create']);

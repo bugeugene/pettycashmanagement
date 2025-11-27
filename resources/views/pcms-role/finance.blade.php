@@ -23,15 +23,6 @@
         </div>
 
         <div class="col-md-4">
-            <a href="{{ url('/funds') }}" class="text-decoration-none">
-                <div class="card shadow p-4 text-center">
-                    <i class="bi bi-wallet2 fs-1"></i>
-                    <h5>Petty Cash Fund</h5>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4">
             <a href="{{ url('/summary') }}" class="text-decoration-none">
                 <div class="card shadow p-4 text-center">
                     <i class="bi bi-file-earmark-text fs-1"></i>

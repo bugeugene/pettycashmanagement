@@ -64,7 +64,7 @@
             <div class="container">
 
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/dashboard') }}">
-                    <i class="bi bi-cash-coin"></i>
+                    <i class="bi bi-bank2"></i>
                     <span class="fw-bold">Petty Cash Management</span>
                 </a>
 
