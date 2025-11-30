@@ -81,10 +81,10 @@ class PettyCashEntriesController extends Controller
                 $entry_id,
                 "CREATE ENTRY",
                 "Created entry:{$entry_id}
-                purpose={$purpose},
-                amount={$amount},
-                date={$date},
-                type={$entry_type}"
+                Purpose={$purpose},
+                Amount={$amount},
+                Date={$date},
+                Type={$entry_type}"
             );
 
 

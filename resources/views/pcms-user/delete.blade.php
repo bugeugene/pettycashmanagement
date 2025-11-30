@@ -20,7 +20,7 @@
 
                 <div class="modal-footer">
                     <a href="{{ url('/users/' . $userList[0]->user_id . '/destroy') }}" class="btn btn-danger">
-                        Yes, Delete
+                        Yes
                     </a>
 
                     <a href="{{ url('/users') }}" class="btn btn-secondary">

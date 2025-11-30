@@ -46,7 +46,7 @@
                         </span>
 
                         <div class="mt-2">
-                            <a href="{{ url('/entries/'.$entry->entry_id.'/edit') }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ url('/entries/'.$entry->entry_id.'/edit') }}" class="btn btn-primary btn-sm">Update</a>
                             <a href="{{ url('/entries/'.$entry->entry_id.'/delete') }}" class="btn btn-danger btn-sm">Delete</a>
                         </div>
                     </div>

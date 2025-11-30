@@ -8,7 +8,7 @@
                 <td valign="middle"><label for="purpose">Purpose</label></td>
                 <td>
                     <textarea name="purpose" placeholder="write here...">{{$entry -> purpose}}</textarea>
-                    </td> 
+                </td> 
             </tr>
             <tr>
                 <td><label for="amount">Amount</label></td>

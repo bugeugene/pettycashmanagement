@@ -69,8 +69,8 @@ Route::middleware(['auth'])->group(function(){
 
     // Approval
     Route::get('/approval', [ApprovalWorkflowController::class, 'index']);
-    Route::get('/approval/{entry_id}', [ApprovalWorkflowController::class, 'show']);
-    Route::post('/approval/submit', [ApprovalWorkflowController::class, 'submit']);
+    Route::get('/approval/remark/{entry_id}', [ApprovalWorkflowController::class, 'show']);
+    Route::post('/approval/remark', [ApprovalWorkflowController::class, 'submit']);
 
     // Audit
     Route::get('/audit', [AuditLogController::class, 'index']);

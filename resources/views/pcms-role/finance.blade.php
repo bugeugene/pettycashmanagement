@@ -17,7 +17,7 @@
             <a href="{{ url('/approval') }}" class="text-decoration-none">
                 <div class="card shadow p-4 text-center">
                     <i class="bi bi-check2-circle fs-1"></i>
-                    <h5>Pending Approvals</h5>
+                    <h5>Mark Remarks Entry</h5>
                 </div>
             </a>
         </div>

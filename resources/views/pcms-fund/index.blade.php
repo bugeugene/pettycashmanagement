@@ -30,7 +30,7 @@
         </table>
             {{-- <a href="{{url('/funds/'.$fund->fund_id.'/edit')}}" class="btn btn-primary">Edit Balance</a> --}}
             <a href="{{url('/funds/replenish')}}" class="btn btn-success">Replenish Fund</a>
-            <a href="{{url('/entries')}}" class="btn btn-primary">Go Back</a>
+            <a href="{{url('/dashboard')}}" class="btn btn-primary">Go Back</a>
         @endif
     </div>
 
