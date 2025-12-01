@@ -26,7 +26,12 @@ class ApprovalWorkflowController extends Controller
         $model = new ApprovalWorkflowModel();
         $entry = $model->getEntryDetails($entry_id);
 
-        return view('/pcms-appwork/remarks', ['entry' => $entry[0]]);
+        $data =[
+            'showdetails' => $entry
+        ];
+
+        // return view('/pcms-appwork/remarks', ['entry' => $entry[0]]);
+        return view('/pcms-appwork/remarks', $data);
     }
 
     public function submit(Request $request){
@@ -36,9 +41,17 @@ class ApprovalWorkflowController extends Controller
         $remarks  = $request->remarks;
         $approver = Auth::user()->user_id;
 
-        // Save remark
         $model->insertRemark($entry_id, $approver, $remarks);
 
-        return redirect('/petty-cash-entries')->with('success', 'Remark added.');
+        $log = new AuditLogModel();
+        $userId = Auth::user()->user_id;
+
+        $log->insertLog(
+            $userId,
+            $entry_id,
+            "ADD REMARK",
+            "Added remark for entry {$entry_id}: {$remarks}");
+
+        return redirect('/approval')->with('success', 'Remark added.');
     }
 }

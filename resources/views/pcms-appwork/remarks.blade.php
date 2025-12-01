@@ -2,7 +2,6 @@
 
     <h2>Remarks for Entry #{{ $entry->entry_id }}</h2>
 
-    <p><strong>Status:</strong> {{ ucfirst($entry->status) }}</p>
     <p><strong>Requester:</strong> {{ $entry->requester }}</p>
     <p><strong>Amount:</strong> {{ $entry->amount }}</p>
     <p><strong>Purpose:</strong> {{ $entry->purpose }}</p>
