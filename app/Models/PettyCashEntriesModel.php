@@ -18,14 +18,26 @@ class PettyCashEntriesModel extends Model
         'entry_type', 'created_by', 'status', 'finance_id'
     ];
 
+    // public function getAllEntries(){
+    //     return self::all();
+    // }
     public function getAllEntries(){
-        return self::all();
+        return DB::table('petty_cash_entries as p')
+            ->join('users as u', 'p.created_by', '=', 'u.user_id')
+            ->select('p.*', 'u.name as created_by_name')
+            ->get();
     }
 
+    // public function getEntriesByRequester($requester_id){
+    //     return self::where('requester_id', $requester_id)->get();
+    // }
     public function getEntriesByRequester($requester_id){
-        return self::where('requester_id', $requester_id)->get();
+        return DB::table('petty_cash_entries as p')
+            ->join('users as u', 'p.created_by', '=', 'u.user_id')
+            ->where('p.requester_id', $requester_id)
+            ->select('p.*', 'u.name as created_by_name')
+            ->get();
     }
-
 
     public function getSpecificEntries($entry_id){
         return $this->find($entry_id);

@@ -46,7 +46,7 @@
                                 <p class="mb-1"><strong>Amount:</strong> {{ $entry->amount }}</p>
                                 <p class="mb-1"><strong>Date:</strong> {{ $entry->date }}</p>
                                 <p class="mb-1"><strong>Entry Type:</strong> {{ $entry->entry_type }}</p>
-                                {{-- <p class="mb-1"><strong>Created By:</strong> {{ $entry->created_by }}</p> --}}
+                                <p class="mb-1"><strong>Created By:</strong> {{ $entry->created_by_name }}</p>
 
                                 <span class="badge bg-{{ 
                                         $entry->status == 'Approved' ? 'success' : ($entry->status == 'Rejected' ? 'danger' : 'warning') }}">
