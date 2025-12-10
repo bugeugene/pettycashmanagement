@@ -1,23 +1,21 @@
 <x-layout>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
-            <div class="position-sticky">
-                <ul class="nav flex-column p-3">
-                    <li class="nav-item">
-                        <a class="nav-link text-black" href="{{ url('/dashboard') }}">
-                            <i class="bi bi-arrow-left-circle me-2"></i> Dashboard
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
+                <div class="position-sticky">
+                    <ul class="nav flex-column p-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ url('/dashboard') }}">
+                                <i class="bi bi-speedometer me-2"></i>Dashboard
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-        <!-- Main Content -->
-        <main class="col-md-10 ms-sm-auto px-4 py-4 d-flex justify-content-center align-items-center">
-                <div class="p-4 border rounded bg-light text-center w-100" >
+            <main class="col-md-10 ms-sm-auto px-4 py-4 d-flex justify-content-center align-items-center">
+                <div class="p-4 border rounded bg-light text-center w-100">
 
                     <p class="mb-4">
                         <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
@@ -34,39 +32,36 @@
                             Delete User
                         </button>
                     </div>
-                    
+
                 </div>
 
-            <!-- Delete Confirmation Modal -->
-            <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
+                <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteUserModalLabel">Confirm Delete</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteUserModalLabel">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
 
-                        <div class="modal-body">
-                            Are you sure you want to delete the user:
-                            <strong>{{ $userList[0]->name }}</strong>?
-                        </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete the user:
+                                <strong>{{ $userList[0]->name }}</strong>?
+                            </div>
 
-                        <div class="modal-footer">
-                            <a href="{{ url('/users/' . $userList[0]->user_id . '/destroy') }}" class="btn btn-danger">
-                                Yes
-                            </a>
-
-                            <a href="{{ url('/users') }}" class="btn btn-secondary">
-                                Cancel
-                            </a>
+                            <div class="modal-footer">
+                                <a href="{{ url('/users') }}" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                                <a href="{{ url('/users/' . $userList[0]->user_id . '/destroy') }}" class="btn btn-danger">
+                                    Yes
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
-
 
 </x-layout>
