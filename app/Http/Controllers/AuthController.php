@@ -26,8 +26,16 @@ class AuthController extends Controller
         'role' => 'required|string'
         ]);
 
-        $users = User::create($validated);
-        Auth::login($users);
+        User::create([
+        'name' => $validated['name'],
+        'username' => $validated['username'],
+        'email' => $validated['email'],
+        'password' => bcrypt($validated['password']),
+        'role' => $validated['role'],
+        ]);
+
+        // $users = User::create($validated);
+        // Auth::login($users);
 
         return redirect('/login');
    }

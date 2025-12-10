@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebar" class="col-md-2 rounded p-3 d-none d-md-block bg-light sidebar min-vh-100">
+            <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
                 <div class="position-sticky">
                     <ul class="nav flex-column p-3">
                         <li class="mb-2 fw-bold">Menu</li>
@@ -21,7 +21,7 @@
                 <div class="container mt-2">
                     <div class="card border-0">
                         <div class="card-header bg-white">
-                            <h4 class="mb-0"><i class="bi bi-file-text"></i> Approvals Remarks</h4>
+                            <h4 class="mb-0"><i class="bi bi-file-text me-2"></i>Approvals Remarks</h4>
                         </div>
 
                         @if (empty($statuslist))
@@ -57,7 +57,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ url('/approval/remark/' . $sl->entry_id) }}" class="btn btn-primary btn-sm">
-                                                    <i class="bi bi-eye"></i> Review
+                                                    <i class="bi bi-eye me-2"></i>Review
                                                 </a>
                                             </td>
                                         </tr>
