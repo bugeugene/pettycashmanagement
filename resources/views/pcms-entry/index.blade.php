@@ -1,35 +1,21 @@
 <x-layout>
 
-    {{-- @if(session('error'))
-        <div class="alert alert-danger mt-2">
-            {{ session('error') }}
-    </div>
-    @endif
-
-    @if(session('success'))
-    <div class="alert alert-success mt-2">
-        {{ session('success') }}
-    </div>
-    @endif --}}
-
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
+            <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
                 <div class="position-sticky">
                     <ul class="nav flex-column p-3">
                         <li class="mb-2 fw-bold">Menu</li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="{{ url()->previous() }}">
-                                <i class="bi bi-arrow-left-circle"></i> Back
+                            <a class="nav-link text-black" href="{{ url('/dashboard') }}">
+                                <i class="bi bi-speedometer me-2"></i>Dashboard
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <!-- Main Content -->
             <main class="col-md-10 ms-sm-auto px-4">
 
                 @if ($entryList->isEmpty())
@@ -38,7 +24,7 @@
                 </div>
                 @else
                 <div class="mt-3">
-                    <h2 class="fw-bold mb-3"><i class="bi bi-cash-stack me-2"></i> Petty Cash Entries</h2>
+                    <h2 class="fw-bold mb-3"><i class="bi bi-cash-stack me-2"></i>Petty Cash Entries</h2>
                 </div>
                 <div class="row g-3">
                     @foreach ($entryList as $entry)

@@ -2,14 +2,14 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
+        <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
             <div class="position-sticky">
                 <ul class="nav flex-column p-3">
                     <li class="mb-2 fw-bold">Menu</li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-black" href="{{ url()->previous() }}">
-                            <i class="bi bi-arrow-left-circle"></i> Back
+                        <a class="nav-link text-black" href="{{ url('dashboard') }}">
+                            <i class="bi bi-speedometer me-2"></i>Dashboard
                         </a>
                     </li>
                 </ul>
@@ -20,7 +20,7 @@
             <div class="container py-4">
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0"><i class="bi bi-file-text"></i> Petty Cash Summary Report</h4>
+                        <h4 class="mb-0"><i class="bi bi-file-text me-2"></i>Petty Cash Summary Report</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('/summary') }}" method="post">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="d-flex justify-content-end mt-4">
                                 <button class="btn btn-primary">
-                                    <i class="bi bi-file-earmark-text"></i> Generate Summary
+                                    <i class="bi bi-file-earmark-text me-2"></i>Generate Summary
                                 </button>
                             </div>
                         </form>

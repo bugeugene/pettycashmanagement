@@ -2,14 +2,14 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
+        <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
             <div class="position-sticky">
                 <ul class="nav flex-column p-3">
                     <li class="mb-2 fw-bold">Menu</li>
 
                     <li class="nav-item">
                         <a class="nav-link text-black" href="{{ url()->previous() }}">
-                            <i class="bi bi-arrow-left-circle"></i> Back
+                            <i class="bi bi-arrow-left-circle me-2"></i>Back
                         </a>
                     </li>
                 </ul>
@@ -20,7 +20,7 @@
             <div class="container mt-4">
                 <div class="card shadow-sm">
                     <div class="card-header bg-white">
-                        <h5 class="mb-0"><i class="bi bi-file-text"></i> Summary Report: {{ $start_date }} to {{ $end_date }}</h5>
+                        <h5 class="mb-0"><i class="bi bi-file-text me-2"></i>Summary Report: {{ $start_date }} to {{ $end_date }}</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">

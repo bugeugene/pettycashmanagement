@@ -2,14 +2,14 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
+        <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
             <div class="position-sticky">
                 <ul class="nav flex-column p-3">
                     <li class="mb-2 fw-bold">Menu</li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-black" href="{{ url()->previous() }}">
-                            <i class="bi bi-arrow-left-circle"></i> Back
+                        <a class="nav-link text-black" href="{{ url('dashboard') }}">
+                            <i class="bi bi-speedometer me-2"></i>Dashboard
                         </a>
                     </li>
                 </ul>
@@ -20,7 +20,7 @@
             <div class="container mt-2">
                 <div class="card border-0">
                     <div class="card-header bg-white">
-                        <h4 class="mb-0"><i class="bi bi-clipboard-check me-2"></i> Audit Logs</h4>
+                        <h4 class="mb-0"><i class="bi bi-clipboard-check me-2"></i>Audit Logs</h4>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive" style="max-height: 480px; overflow-y: auto;">
