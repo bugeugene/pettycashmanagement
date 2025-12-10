@@ -27,7 +27,7 @@ class ApprovalWorkflowController extends Controller
         $entry = $model->getEntryDetails($entry_id);
 
         $data =[
-            'showdetails' => $entry
+            'showdetails' => $entry[0] ?? null
         ];
 
         // return view('/pcms-appwork/remarks', ['entry' => $entry[0]]);

@@ -11,56 +11,13 @@
     <title>Petty Cash Management System</title>
 </head>
 <body>
-
     @if (session('success'))
         <div class="p-4 text-center bg-green-50 text-green-50 font-bold"> 
             {{session('success')}}
         </div>
     @endif
-
     <header>
-        {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="{{url('/entries')}}">
-                    <i class="bi bi-cash-coin"></i>
-                    <span class="fw-bold">Petty Cash Management</span>
-                </a>
-
-                <div class="d-flex align-items-center gap-2">
-                    @guest
-                        <a href="{{url('/login')}}" class="btn btn-outline-light btn-sm">Log In</a>
-                    @endguest
-
-                    @auth
-
-                        @if(auth()->user()->role === 'Requester')
-                            <span>Hi there, {{ auth()->user()->name }}</span>
-                            <a href="{{url('/dashboard')}}" class="btn btn-light btn-sm">Dashboard</a>
-                            <a href="{{url('/entries/add')}}" class="btn btn-light btn-sm">Create Entry</a>
-                        @endif
-
-                        @if(auth()->user()->role === 'Finance')
-                            <span>Hi there, {{ auth()->user()->name }}</span>
-                            <a href="{{url('/funds')}}" class="btn btn-light btn-sm">Check Funds</a>
-                            <a href="{{url('/audit')}}" class="btn btn-warning btn-sm">View History Log</a>
-                            <a href="{{url('/approval')}}"class="btn btn-secondary btn-sm">View Approval</a>
-                            <a href="{{url('/summary')}}" class="btn btn-primary btn-sm">Generate Summary</a>
-                        @endif
-
-                        @if(auth()->user()->role === 'Admin')
-                            <span>Hi there, {{ auth()->user()->name }}</span>
-                            <a href="{{url('/users/add')}}" class="btn btn-outline-light btn-sm">Create New User</a>
-                        @endif
-                        
-                        <form action="{{url('/logout')}}" method="post" class="m-0">
-                        @csrf
-                            <button class="btn btn-danger btn-sm">Logout</button>
-                        </form>
-                    @endauth
-                </div>
-            </div>
-        </nav> --}}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info bg-gradient shadow-sm">
             <div class="container">
 
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/dashboard') }}">
@@ -68,26 +25,29 @@
                     <span class="fw-bold">Petty Cash Management</span>
                 </a>
 
-                <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center gap-2">
                     @auth
-                        <span class="text-white fw-bold">Hi, {{ auth()->user()->name }}</span>
-
-                        <a href="{{ url('/dashboard') }}" class="btn btn-light btn-sm">Dashboard</a>
+                        <span class="text-light fw-bold">Hi, {{ auth()->user()->name }}</span>
 
                         <form action="{{ url('/logout') }}" method="post" class="m-0">
-                            @csrf
+                        @csrf
                             <button class="btn btn-danger btn-sm">Logout</button>
                         </form>
                     @endauth
                 </div>
-
             </div>
         </nav>
     </header>
-    
-    <main class="container-lg">
+
+    <main class="container-fluid">
         {{ $slot }}
     </main>
 
+    <footer class="bg-info text-light text-center py-4 mt-auto">
+        <div class="container">
+            &copy; {{ date('Y') }} Petty Cash Management System. All Rights Reserved.
+        </div>
+    </footer>
+    
 </body>
 </html>

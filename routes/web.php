@@ -11,17 +11,20 @@ use App\Http\Controllers\PettyCashFundController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
 
+use function Pest\Laravel\get;
+
 Route::get('/', function (){
     return view('welcome');
 });
 
-// Route::[resource]('/[uri]', function (){})
-// Route::[resource]('/[uri]', [[Controller Name Here]::class, '[Controller Method]'])
+/* Route::[resource]('/[uri]', function (){})
+Route::[resource]('/[uri]', [[Controller Name Here]::class, '[Controller Method]'])*/
 
 // Log In
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -29,15 +32,15 @@ Route::middleware(['auth'])->group(function(){
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'landingpage']);
 
-    Route::get('/dashboard/requester', function () {
+    Route::get('/dashboard/requester', function(){
         return view('/pcms-role/requester');
     });
 
-    Route::get('/dashboard/finance', function () {
+    Route::get('/dashboard/finance', function(){
         return view('/pcms-role/finance');
     });
 
-    Route::get('/dashboard/admin', function () {
+    Route::get('/dashboard/admin', function(){
         return view('/pcms-role/admin');
     });
 
@@ -51,7 +54,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/users/{user_id}/destroy', [PettyCashController::class, 'destroy']);
 
     // Categories
-    Route::get('/category', [PettyCashCategoriesController::class, 'index']);
+    Route::get('/categories', [PettyCashCategoriesController::class, 'index']);
 
     // Entries
     Route::get('/entries', [PettyCashEntriesController::class, 'index']);
@@ -79,16 +82,13 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/summary', [SummaryController::class, 'generateSummary']);
 
 });
+/*
+Route::get('/category/add', [PettyCashCategoriesController::class, 'add']);
+Route::post('/category/create', [PettyCashCategoriesController::class, 'create']);
+Route::get('/category/{category_id}/edit', [PettyCashCategoriesController::class, 'edit']);
+Route::post('/category/{category_id}/update', [PettyCashCategoriesController::class, 'update']);
+Route::get('/category/{category_id}/delete', [PettyCashCategoriesController::class, 'delete']);
+Route::get('/category/{category_id}/destroy', [PettyCashCategoriesController::class, 'destroy']);
 
-// Route::get('/register', [AuthController::class, 'showRegister']);
-// Route::post('/register', [AuthController::class, 'register']);
-
-// Route::get('/category/add', [PettyCashCategoriesController::class, 'add']);
-// Route::post('/category/create', [PettyCashCategoriesController::class, 'create']);
-// Route::get('/category/{category_id}/edit', [PettyCashCategoriesController::class, 'edit']);
-// Route::post('/category/{category_id}/update', [PettyCashCategoriesController::class, 'update']);
-// Route::get('/category/{category_id}/delete', [PettyCashCategoriesController::class, 'delete']);
-// Route::get('/category/{category_id}/destroy', [PettyCashCategoriesController::class, 'destroy']);
-
-// Route::get('/funds/{fund_id}/edit', [PettyCashFundController::class, 'edit']);
-// Route::post('/funds/{fund_id}/update', [PettyCashFundController::class, 'update']);
+Route::get('/funds/{fund_id}/edit', [PettyCashFundController::class, 'edit']);
+Route::post('/funds/{fund_id}/update', [PettyCashFundController::class, 'update']); */

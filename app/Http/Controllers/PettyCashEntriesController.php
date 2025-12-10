@@ -14,8 +14,18 @@ class PettyCashEntriesController extends Controller
 {
     public function index(){
         $entriesmodel = new PettyCashEntriesModel();
-        $entriesResults = $entriesmodel -> getAllEntries();
         $categoriesmodel = new PettyCashCategoriesModel();
+        $user = Auth::user();
+
+        if ($user->role ==='Requester'){
+            $entriesResults = $entriesmodel -> getEntriesByRequester($user->user_id);
+        }
+        else if ($user->role === 'Finance'){
+            $entriesResults = $entriesmodel -> getAllEntries();
+        }
+        else{
+            abort(403, 'Unauthorized access');
+        }
         
         foreach($entriesResults as $entry){
             $entry->categories = $categoriesmodel->getCategoriesByEntry($entry->entry_id);
@@ -26,25 +36,10 @@ class PettyCashEntriesController extends Controller
         return view('/pcms-entry/index', $data);
     }
 
-    // public function add (){
-    //     return view('/pcms-entry/add');
-    // }
-
     public function add(){
         $categories = (new PettyCashCategoriesModel())->getAllCategories();
         return view('/pcms-entry/add', compact('categories'));
     }
-
-    // public function create(Request $request){
-    //     $amount = $request -> input('amount');
-    //     $purpose = $request -> input('purpose');
-    //     $date = $request -> input('date');
-    //     $entry_type = $request -> input('entry_type');
-
-    //     $model = new PettyCashEntriesModel();
-    //     $model -> setnewEntries($amount, $purpose, $date, $entry_type);
-    //     return redirect('/entries');
-    // }
 
     public function create(Request $request){
         $request->validate([
@@ -70,9 +65,6 @@ class PettyCashEntriesController extends Controller
 
             $entry_id = DB::getPdo()->lastInsertId();
 
-            $fundmodel = new PettyCashFundModel();
-            $fundmodel->reduceBalance($amount);
-
             $log = new AuditLogModel();
             $userId = Auth::user()->user_id;
 
@@ -80,11 +72,11 @@ class PettyCashEntriesController extends Controller
                 $userId,
                 $entry_id,
                 "CREATE ENTRY",
-                "Created entry:{$entry_id}
-                Purpose={$purpose},
-                Amount={$amount},
-                Date={$date},
-                Type={$entry_type}"
+                "Created entry : {$entry_id}
+                Purpose = {$purpose},
+                Amount = {$amount},
+                Date = {$date},
+                Type = {$entry_type}"
             );
 
 
@@ -97,34 +89,54 @@ class PettyCashEntriesController extends Controller
         }
     }
 
-    // public function edit($entry_id){
-    //     $model = new PettyCashEntriesModel();
-    //     $entry = $model->getSpecificEntries($entry_id);
-    //     return view('/pcms-entry/edit', ['entry'=>$entry]);
-    // }
-
     public function edit($entry_id){
         $entry = (new PettyCashEntriesModel())->getSpecificEntries($entry_id);
+
+        if(!$entry) return redirect('/entries')->with('error', 'Entry not found.');
+
+        if(Auth::user()->role === 'Requester' && $entry->status !== 'Pending'){
+            return redirect('/entries')->with('error', 'You cannot edit approved or rejected entries.');
+    }
         $categories = (new PettyCashCategoriesModel())->getAllCategories();
         return view('/pcms-entry/edit', compact('entry','categories'));
     }
 
-    // public function update($entry_id, Request $request){
-    //     $model = new PettyCashEntriesModel();
-    //     $purpose = $request -> input('purpose');
-    //     $amount = $request -> input('amount');
-    //     $date = $request -> input('date');
-    //     $entry_type = $request -> input('entry_type');
-    //     $status = $request -> input('status');
-    //     $model -> setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status);
-
-    //     return redirect('entries');
-    // }
-
     public function update($entry_id, Request $request){
-        DB::beginTransaction(); 
+        $entry = PettyCashEntriesModel::find($entry_id);
+        
+        if (!$entry) return redirect('/entries')->with('error', 'Entry not found.');
+        
+        if (Auth::user()->role === 'Requester' && $entry->status !== 'Pending') {
+            return redirect('/entries')->with('error', 'You cannot update approved or rejected entries.');
+        }
 
+        DB::beginTransaction();
+        
         try {
+
+            $oldStatus = $entry->status;
+            $oldAmount = $entry->amount;
+
+            $newStatus = $request->input('status');
+            $newAmount = $request->input('amount');
+
+            $fundmodel = new PettyCashFundModel();
+
+            if ($oldStatus === 'Pending' && $newStatus === 'Approved') {
+
+                $fundmodel->reduceBalance($newAmount);
+
+            } elseif ($oldStatus === 'Approved' && $newStatus === 'Approved') {
+
+                if ($newAmount > $oldAmount) {
+                    $difference = $newAmount - $oldAmount;
+                    $fundmodel->reduceBalance($difference);
+
+                } elseif ($newAmount < $oldAmount) {
+                    $difference = $oldAmount - $newAmount;
+                    $fundmodel->increaseBalance($difference);
+                }
+            }
 
             $model = new PettyCashEntriesModel();
             $purpose = $request->input('purpose');
@@ -142,7 +154,7 @@ class PettyCashEntriesController extends Controller
                 $userId,
                 $entry_id,
                 "UPDATE ENTRY",
-                "Updated entry id={$entry_id}"
+                "Updated entry id = {$entry_id}"
             );
 
             DB::commit();
@@ -154,6 +166,7 @@ class PettyCashEntriesController extends Controller
         }
     }
 
+
     public function delete($entry_id){
         $model = new PettyCashEntriesModel();
         $dbResults = $model -> getSpecificEntries($entry_id);
@@ -163,43 +176,19 @@ class PettyCashEntriesController extends Controller
         return view('/pcms-entry/delete', $data);
     }
 
-    // public function destroy($entry_id){
-    //     $model = new PettyCashEntriesModel();
-    //     $entry = $model->getSpecificEntries($entry_id);
-
-    //     if (!$entry) {
-    //         return redirect('/entries')->with('error', 'Entry not found.');
-    //     }
-
-    //     if (strcasecmp(trim($entry->status), 'Approved') === 0) {
-    //         return redirect('/entries')->with('error', 'Cannot delete approved transactions.');
-    //     }
-
-    //     $model->setDestroyEntries($entry_id);
-
-    //     return redirect('/entries')->with('success', 'Entry deleted.');
-    // }
-
     public function destroy($entry_id){
-        // DB::beginTransaction();
-        // try {
+        $entry = PettyCashEntriesModel::find($entry_id);
+        
+        if (!$entry) {
+            return redirect('/entries')->with('error', 'Entry not found.');
+        }
+        if (strcasecmp(trim($entry->status), 'Approved') === 0) {
+            return redirect('/entries')->with('error', 'Cannot delete approved or rejected transactions.');
+        }
 
-            // $model = new PettyCashEntriesModel();
-            // $entry = $model->getSpecificEntries($entry_id);
-             $entry = PettyCashEntriesModel::find($entry_id);
-
-            if (!$entry) {
-                return redirect('/entries')->with('error', 'Entry not found.');
-            }
-
-            if (strcasecmp(trim($entry->status), 'Approved') === 0) {
-                return redirect('/entries')->with('error', 'Cannot delete approved transactions.');
-            }
-
-            DB::beginTransaction();
+        DB::beginTransaction();
             try{
 
-            // $model->setDestroyEntries($entry_id);
             $entry->delete();
 
             $log = new AuditLogModel();
@@ -209,7 +198,7 @@ class PettyCashEntriesController extends Controller
                 $userId,
                 $entry_id,
                 "DELETE ENTRY",
-                "Deleted entry id={$entry_id}"
+                "Deleted entry id = {$entry_id}"
             );
 
             DB::commit();

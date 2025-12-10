@@ -16,73 +16,73 @@ class UsersSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Blake Johnson',
-                'username' => 'blake',
-                'password' => Hash::make('123456'),
-                'email' => 'blake.johnson@gmail.com',
+                'name' => 'Eugene Christian Cas',
+                'username' => 'Yuujin',
+                'password' => Hash::make('yuujincas0'),
+                'email' => 'yuujin.cas@gmail.com',
                 'role' => 'Admin'
             ],
             [
-                'name' => 'Ben Cruz',
-                'username' => 'ben',
-                'password' => Hash::make('123456'),
-                'email' => 'ben@example.com',
-                'role' => 'Finance'
-            ],
-            [
-                'name' => 'Carla Reyes',
-                'username' => 'carla',
-                'password' => Hash::make('123456'),
-                'email' => 'carla@example.com',
+                'name' => 'Kathleen Sasaluya',
+                'username' => 'Kathleen',
+                'password' => Hash::make('kathleensa0'),
+                'email' => 'kathleen.sasaluya@gmail.com',
                 'role' => 'Admin'
             ],
             [
-                'name' => 'Dino Flores',
-                'username' => 'dino',
-                'password' => Hash::make('123456'),
-                'email' => 'dino@example.com',
-                'role' => 'Requester'
-            ],
-            [
-                'name' => 'Ella Lim',
-                'username' => 'ella',
-                'password' => Hash::make('123456'),
-                'email' => 'ella@example.com',
-                'role' => 'Finance'
-            ],
-            [
-                'name' => 'Frank Diaz',
-                'username' => 'frank',
-                'password' => Hash::make('123456'),
-                'email' => 'frank@example.com',
-                'role' => 'Requester'
-            ],
-            [
-                'name' => 'Grace Santos',
-                'username' => 'grace',
-                'password' => Hash::make('123456'),
-                'email' => 'grace@example.com',
-                'role' => 'Finance'
-            ],
-            [
-                'name' => 'Henry Park',
-                'username' => 'henry',
-                'password' => Hash::make('123456'),
-                'email' => 'henry@example.com',
+                'name' => 'Cedrick John Tuscano',
+                'username' => 'Cedrick',
+                'password' => Hash::make('cjtusacano1'),
+                'email' => 'cedricj.tuscano@gmail.com',
                 'role' => 'Admin'
             ],
             [
-                'name' => 'Ivy Tan',
-                'username' => 'ivy',
-                'password' => Hash::make('123456'),
-                'email' => 'ivy@example.com',
+                'name' => 'Kennrich Leigh Betchayda',
+                'username' => 'Leigh',
+                'password' => Hash::make('kenleyda2'),
+                'email' => 'leighrich@gmail.com',
+                'role' => 'Finance'
+            ],
+            [
+                'name' => 'Nathaniel Fabricante',
+                'username' => 'Natiboy',
+                'password' => Hash::make('natnatboy3'),
+                'email' => 'nathfab@gmail.com',
+                'role' => 'Finance'
+            ],
+            [
+                'name' => 'Earl Dwayne Nacion',
+                'username' => 'Earl',
+                'password' => Hash::make('earlnacion4'),
+                'email' => 'earldwayne@gmail.com',
+                'role' => 'Finance'
+            ],
+            [
+                'name' => 'Eric Ocayo',
+                'username' => 'Erick',
+                'password' => Hash::make('erectyo5'),
+                'email' => 'ericocayo@gmail.com',
                 'role' => 'Requester'
             ],
             [
-                'name' => 'Jack Torres',
-                'username' => 'jack',
-                'password' => Hash::make('123456'),
-                'email' => 'jack@example.com',
+                'name' => 'Eric John Villagomez',
+                'username' => 'Ejiee',
+                'password' => Hash::make('anojiee6'),
+                'email' => 'ejieh@gmail.com',
+                'role' => 'Requester'
+            ],
+            [
+                'name' => 'Jherome Bernales',
+                'username' => 'Jherome',
+                'password' => Hash::make('jhernales7'),
+                'email' => 'jheromeber@gmail.com',
+                'role' => 'Requester'
+            ],
+            [
+                'name' => 'John Doe',
+                'username' => 'John',
+                'password' => Hash::make('johndoe8'),
+                'email' => 'johndoe@gmail.com',
                 'role' => 'Finance'
             ],
         ]);

@@ -23,45 +23,45 @@ class PettyCashFundController extends Controller
         return view('/pcms-fund/replenish');
     }
 
-    // public function replenish(Request $request)
-    // {
-    //     $amount = $request->input('amount');
-    //     $model = new PettyCashFundModel();
-    //     $fund = $model->getFund();
-
-    //     $model->replenishFund($fund->fund_id, $amount);
-
-    //     return redirect('/funds')->with('success', 'Fund replenished successfully!');
-    // }
-
-     public function replenish(Request $request){
+    public function replenish(Request $request)
+    {
         $amount = $request->input('amount');
+        $model = new PettyCashFundModel();
+        $fund = $model->getFund();
 
-        DB::beginTransaction(); 
+        $model->replenishFund($fund->fund_id, $amount);
 
-        try {
-
-            $model = new PettyCashFundModel();
-            $fund = $model->getFund();
-
-            $model->replenishFund($fund->fund_id, $amount);
-
-            $log = new AuditLogModel();
-            $user_id = Auth::user()->user_id;
-
-            $log->insertLog(
-                $user_id, 0, "REPLENISH FUND","Replenished fund by PHP {$amount}"
-            );
-
-            DB::commit();
-
-            return redirect('/funds')->with('success', 'Fund replenished successfully!');
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect('/funds')->with('error', 'Something went wrong replenishing fund.');
-        }
+        return redirect('/funds')->with('success', 'Fund replenished successfully!');
     }
+
+    // public function replenish(Request $request){
+    //     $amount = $request->input('amount');
+
+    //     DB::beginTransaction(); 
+
+    //     try {
+
+    //         $model = new PettyCashFundModel();
+    //         $fund = $model->getFund();
+
+    //         $model->replenishFund($fund->fund_id, $amount);
+
+    //         $log = new AuditLogModel();
+    //         $user_id = Auth::user()->user_id;
+
+    //         $log->insertLog(
+    //             $user_id, 0, "REPLENISH FUND","Replenished fund by PHP {$amount}"
+    //         );
+
+    //         DB::commit();
+
+    //         return redirect('/funds')->with('success', 'Fund replenished successfully!');
+
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return redirect('/funds')->with('error', 'Something went wrong replenishing fund.');
+    //     }
+    // }
 
     // public function edit($fund_id)
     // {
@@ -71,13 +71,13 @@ class PettyCashFundController extends Controller
     //     return view('/pcms-fund/edit', ['fund' => $fund]);
     // }
 
-    public function update(Request $request, $fund_id)
-    {
-        $new_balance = $request->input('current_balance');
-        $model = new PettyCashFundModel();
+    // public function update(Request $request, $fund_id)
+    // {
+    //     $new_balance = $request->input('current_balance');
+    //     $model = new PettyCashFundModel();
 
-        $model->updateBalance($fund_id, $new_balance);
+    //     $model->updateBalance($fund_id, $new_balance);
 
-        return redirect('/funds')->with('success', 'Fund updated!');
-    }
+    //     return redirect('/funds')->with('success', 'Fund updated!');
+    // }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PettyCashEntriesModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,6 @@ class DashboardController extends Controller
         'Finance'   => redirect('/dashboard/finance'),
         'Admin'     => redirect('/dashboard/admin'),
         default     => abort(403, 'Unknown role'),
-    };
-}
+        };
+    }
 }

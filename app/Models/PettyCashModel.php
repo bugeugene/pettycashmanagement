@@ -12,8 +12,7 @@ class PettyCashModel extends Model
     protected $table = 'users';
     protected $primaryKey = 'user_id';
 
-    protected $fillable =['name', 'username', 'password', 'email', 'role'];
-    public $timestamps = false;*/
+    protected $fillable =['name', 'username', 'password', 'email', 'role'];)*/
 
     public function getAllUser(){
         return DB::select('SELECT * FROM users');

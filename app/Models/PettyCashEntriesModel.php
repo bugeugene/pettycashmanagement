@@ -10,38 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PettyCashEntriesModel extends Model
 {
     use SoftDeletes;
-
-    // public function getAllEntries(){
-    //     return DB::select('SELECT * FROM petty_cash_entries');
-    // }
-
-    // public function setnewEntries($amount, $purpose, $date, $entry_type, $category_id, $user_id){
-    //     DB::insert('INSERT INTO petty_cash_entries
-    //     (requester_id, category_id, purpose, amount, date, entry_type, created_by)
-    //     VALUES (?, ?, ?, ?, ?, ?, ?)', [$user_id, $category_id, $purpose, $amount, $date, $entry_type, $user_id]);
-    // }
-
-    // public function getSpecificEntries($entry_id){
-    //     $rows = DB::select('SELECT * FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
-    //     return count($rows) > 0 ? $rows[0] : null;
-    // }
-
-    // public function setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status){
-    //     DB::update('UPDATE petty_cash_entries SET purpose = ?, amount =?, date = ?, entry_type = ?, status = ? 
-    //     WHERE entry_id = ?', [$purpose, $amount, $date, $entry_type, $status,$entry_id]);
-    // }
-
-    // // public function setDestroyEntries($entry_id){
-    // //     DB::delete('DELETE FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
-    // // }
-
-    // public function setDestroyEntries($entry_id){
-    //     $entry = $this->find($entry_id);
-    //     if ($entry) {
-    //         $entry->delete();
-    //     }
-    // }
-
+    
     protected $primaryKey = 'entry_id';
     protected $table = 'petty_cash_entries';
     protected $fillable = [
@@ -50,11 +19,16 @@ class PettyCashEntriesModel extends Model
     ];
 
     public function getAllEntries(){
-        return self::all(); // returns Eloquent Collection
+        return self::all();
     }
 
+    public function getEntriesByRequester($requester_id){
+        return self::where('requester_id', $requester_id)->get();
+    }
+
+
     public function getSpecificEntries($entry_id){
-        return $this->find($entry_id); // returns Eloquent model
+        return $this->find($entry_id);
     }
 
     public function setnewEntries($amount, $purpose, $date, $entry_type, $category_id, $user_id){
@@ -89,7 +63,6 @@ class PettyCashEntriesModel extends Model
             ->update(['status' => $status, 'updated_at' => now()]);
     }
 
-
     public function setDestroyEntries($entry_id){
         $entry = $this->find($entry_id);
         if ($entry) {
@@ -112,3 +85,34 @@ class PettyCashEntriesModel extends Model
     }
 
 }
+
+    // public function getAllEntries(){
+    //     return DB::select('SELECT * FROM petty_cash_entries');
+    // }
+
+    // public function setnewEntries($amount, $purpose, $date, $entry_type, $category_id, $user_id){
+    //     DB::insert('INSERT INTO petty_cash_entries
+    //     (requester_id, category_id, purpose, amount, date, entry_type, created_by)
+    //     VALUES (?, ?, ?, ?, ?, ?, ?)', [$user_id, $category_id, $purpose, $amount, $date, $entry_type, $user_id]);
+    // }
+
+    // public function getSpecificEntries($entry_id){
+    //     $rows = DB::select('SELECT * FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+    //     return count($rows) > 0 ? $rows[0] : null;
+    // }
+
+    // public function setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status){
+    //     DB::update('UPDATE petty_cash_entries SET purpose = ?, amount =?, date = ?, entry_type = ?, status = ? 
+    //     WHERE entry_id = ?', [$purpose, $amount, $date, $entry_type, $status,$entry_id]);
+    // }
+
+    // // public function setDestroyEntries($entry_id){
+    // //     DB::delete('DELETE FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+    // // }
+
+    // public function setDestroyEntries($entry_id){
+    //     $entry = $this->find($entry_id);
+    //     if ($entry) {
+    //         $entry->delete();
+    //     }
+    // }
