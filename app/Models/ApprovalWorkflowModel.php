@@ -20,4 +20,12 @@ class ApprovalWorkflowModel extends Model
         DB::insert(" INSERT INTO approval_workflows (entry_id, approver_id, remarks)
         VALUES (?, ?, ?) ", [$entry_id, $approver_id, $remarks]);
     }
+
+    public function getRemarksByEntry($entry_id) {
+        return DB::select("SELECT aw.*, u.name AS approver_name 
+                        FROM approval_workflows aw
+                        JOIN users u ON u.user_id = aw.approver_id
+                        WHERE aw.entry_id = ?
+                        ORDER BY aw.created_at ASC", [$entry_id]);
+    }
 }
