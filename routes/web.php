@@ -11,8 +11,6 @@ use App\Http\Controllers\PettyCashFundController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
 
-use function Pest\Laravel\get;
-
 Route::get('/', function (){
     return view('welcome');
 });

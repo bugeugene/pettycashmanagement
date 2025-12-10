@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
+            <nav id="sidebar" class="col-md-2  p-3 d-none d-md-block bg-light sidebar min-vh-100">
                 <div class="position-sticky">
                     <ul class="nav flex-column p-3">
                         <li class="nav-item">
@@ -54,12 +54,13 @@
                             <div class="modal-footer">
                                 <form action="{{ url('/entries/'.$entry->entry_id.'/destroy') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger">Yes</button>
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-danger">
+                                        Yes
+                                    </button>
                                 </form>
-
-                                <button class="btn btn-secondary" data-bs-dismiss="modal">
-                                    Cancel
-                                </button>
                             </div>
 
                         </div>

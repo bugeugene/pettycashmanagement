@@ -23,7 +23,7 @@
                 </div>
                 @else
                 <div class="card-header bg-white">
-                    <h4 class="fw-bold"><i class="bi bi-view-list me-2"></i>Category List</h4>
+                    <h4 class="fw-semibold"><i class="bi bi-view-list me-2"></i>Category List</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle">

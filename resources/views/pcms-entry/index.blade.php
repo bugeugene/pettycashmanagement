@@ -24,7 +24,7 @@
                 </div>
                 @else
                 <div class="mt-3">
-                    <h2 class="fw-bold mb-3"><i class="bi bi-cash-stack me-2"></i>Petty Cash Entries</h2>
+                    <h2 class="fw-semibold mb-3"><i class="bi bi-cash-stack me-2"></i>Petty Cash Entries</h2>
                 </div>
                 <div class="row g-3">
                     @foreach ($entryList as $entry)
@@ -46,7 +46,7 @@
                                 <p class="mb-1"><strong>Amount:</strong> {{ $entry->amount }}</p>
                                 <p class="mb-1"><strong>Date:</strong> {{ $entry->date }}</p>
                                 <p class="mb-1"><strong>Entry Type:</strong> {{ $entry->entry_type }}</p>
-                                <p class="mb-1"><strong>Created By:</strong> {{ $entry->created_by }}</p>
+                                {{-- <p class="mb-1"><strong>Created By:</strong> {{ $entry->created_by }}</p> --}}
 
                                 <span class="badge bg-{{ 
                                         $entry->status == 'Approved' ? 'success' : ($entry->status == 'Rejected' ? 'danger' : 'warning') }}">

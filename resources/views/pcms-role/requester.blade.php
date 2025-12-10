@@ -2,27 +2,30 @@
     <div class="container-fluid">
     <div class="row">
 
-        <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-white sidebar min-vh-100">
+        <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
             <div class="position-sticky">
                 <ul class="nav flex-column">
+                    <li>
+                        <h5 class="mb-2 fw-bold">Menu</h5>
+                    </li>
                     <li class="nav-item mb-2">
                         <a class="nav-link text-black" href="{{ url('/dashboard') }}">
-                            <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                            <i class="bi bi-speedometer2 me-2"></i>Dashboard
                         </a>
                     </li>
                     <li class="nav-item mb-2">
                         <a class="nav-link text-black" href="{{ url('/entries/add') }}">
-                            <i class="bi bi-plus-circle me-2"></i> Create Petty Cash Transaction
+                            <i class="bi bi-plus-circle me-2"></i>Create Request
                         </a>
                     </li>
                     <li class="nav-item mb-2">
                         <a class="nav-link text-black" href="{{ url('/categories') }}">
-                            <i class="bi bi-people me-2"></i> View Categories
+                            <i class="bi bi-people me-2"></i>View Categories
                         </a>
                     </li>
                     <li class="nav-item mb-2">
                         <a class="nav-link text-black" href="{{ url('/entries') }}">
-                            <i class="bi bi-list-ul me-2"></i> View Petty Cash Transaction History
+                            <i class="bi bi-list-ul me-2"></i> View History
                         </a>
                     </li>
                     <li class="nav-item mb-2">
@@ -34,14 +37,11 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
         <main class="col-md-10 ms-sm-auto px-4 py-4">
             <h2 class="fw-bold mb-3">Requester Dashboard</h2>
             <p class="text-muted mb-4">You can create and manage your petty cash requests.</p>
 
-            <!-- Add your main content here -->
             <div class="row">
-                <!-- Example card -->
                 <div class="col-md-4 mb-3">
                     <div class="card shadow-sm p-3 text-center">
                         <i class="bi bi-plus-circle fs-1 mb-2 text-primary"></i>
