@@ -12,37 +12,32 @@ use Illuminate\Support\Facades\DB;
 
 class PettyCashEntriesController extends Controller
 {
-public function index()
-{
-    $entriesmodel = new PettyCashEntriesModel();
-    $categoriesmodel = new PettyCashCategoriesModel();
-    $user = Auth::user();
+    public function index()
+    {
+        $entriesmodel = new PettyCashEntriesModel();
+        $categoriesmodel = new PettyCashCategoriesModel();
+        $user = Auth::user();
 
-    // Get entries based on role
-    if ($user->role === 'Requester') {
-        $entriesResults = $entriesmodel->getEntriesByRequester($user->user_id);
-    } elseif ($user->role === 'Finance' || $user->role === 'Admin') {
-        $entriesResults = $entriesmodel->getAllEntries();
-    } else {
-        abort(403, 'Unauthorized access');
+        if ($user->role === 'Requester') {
+            $entriesResults = $entriesmodel->getEntriesByRequester($user->user_id);
+        } elseif ($user->role === 'Finance' || $user->role === 'Admin') {
+            $entriesResults = $entriesmodel->getAllEntries();
+        } else {
+            abort(403, 'Unauthorized access');
+        }
+
+        foreach ($entriesResults as $entry) {
+            $entry->categories = $categoriesmodel->getCategoriesByEntry($entry->entry_id);
+        }
+
+        $categoryList = $categoriesmodel->getAllCategories();
+
+        return view('/pcms-entry/index', [
+            'entryList'    => $entriesResults,
+            'categoryList' => $categoryList,
+            'userRole'     => $user->role, 
+        ]);
     }
-
-    // Attach categories to each entry
-    foreach ($entriesResults as $entry) {
-        $entry->categories = $categoriesmodel->getCategoriesByEntry($entry->entry_id);
-    }
-
-    // Get all categories (for display in the category table)
-    $categoryList = $categoriesmodel->getAllCategories();
-
-    // Pass data to view, including the user role
-    return view('/pcms-entry/index', [
-        'entryList'    => $entriesResults,
-        'categoryList' => $categoryList,
-        'userRole'     => $user->role, // pass role for Blade conditionals
-    ]);
-}
-
 
     public function add(){
         $categories = (new PettyCashCategoriesModel())->getAllCategories();
