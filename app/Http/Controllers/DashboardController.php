@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ApprovalWorkflowModel;
-use App\Models\PettyCashCategoriesModel;
 use App\Models\PettyCashEntriesModel;
 use App\Models\PettyCashFundModel;
 use App\Models\PettyCashModel;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -64,6 +61,33 @@ class DashboardController extends Controller
             'fund' => $fund,
             'pendingApprovals' => $pendingApprovals,
             'recentTransactions' => $recentTransactions,
+        ]);
+    }
+
+    public function requester(){
+        $userId = Auth::user()->user_id;
+        $totalCategories = DB::table('petty_cash_categories')->count();
+
+        $role = Auth::user()->role;
+        if ($role === 'admin' || $role === 'finance') {
+            $topCategory   = PettyCashEntriesModel::getTopCategory();
+            $recentEntries = PettyCashEntriesModel::recentEntries();
+        } else {
+            $topCategory   = PettyCashEntriesModel::getTopCategoryByUser($userId);
+            $recentEntries = PettyCashEntriesModel::recentEntriesByUser($userId);
+        }
+
+        return view('/pcms-role/requester', [
+            'totalRequests' => PettyCashEntriesModel::where('requester_id', $userId)->count(),
+            'pending'       => PettyCashEntriesModel::where('requester_id', $userId)->where('status', 'Pending')->count(),
+            'approved'      => PettyCashEntriesModel::where('requester_id', $userId)->where('status', 'Approved')->count(),
+            'rejected'      => PettyCashEntriesModel::where('requester_id', $userId)->where('status', 'Rejected')->count(),
+            'totalCategories' => $totalCategories,
+            'totalRequestAmount'  => PettyCashEntriesModel::totalRequestAmount($userId),
+            'totalReplenishment'  => PettyCashEntriesModel::totalReplenishments($userId),
+            'totalAdjust'         => PettyCashEntriesModel::totalAdjustments($userId), 
+            'topCategory'   => $topCategory,
+            'recentEntries' => $recentEntries,
         ]);
     }
 

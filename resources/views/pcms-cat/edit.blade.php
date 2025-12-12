@@ -13,6 +13,11 @@
                                 <i class="bi bi-speedometer me-2"></i>Dashboard
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ url('/category') }}">
+                                <i class="bi bi-arrow-left-circle me-2"></i>Back
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

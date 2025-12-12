@@ -33,12 +33,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'landingpage']);
     Route::get('/dashboard/finance', [DashboardController::class, 'finance']);
     Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
-
-    Route::get('/dashboard/requester', function(){
-        return view('/pcms-role/requester');
-    });
-
-    
+    Route::get('/dashboard/requester', [DashboardController::class, 'requester']);
 
     // Users
     Route::get('/users', [PettyCashController::class, 'index']);

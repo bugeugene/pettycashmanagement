@@ -12,11 +12,13 @@
                                 <i class="bi bi-speedometer me-2"></i>Dashboard
                             </a>
                         </li>
+                        @if(Auth::user()->role === 'Admin')
                         <li class="nav-item">
                             <a class="nav-link text-black" href="{{ url('/category/add') }}">
                                 <i class="bi bi-folder me-2"></i>Create Category
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </nav>
@@ -36,7 +38,9 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
+                                @if(Auth::user()->role === 'Admin')
                                 <th class="text-center">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +53,7 @@
                                 <td>
                                     <span class="text-muted">{{ $category->description }}</span>
                                 </td>
+                                @if(Auth::user()->role === 'Admin')
                                 <td class="text-center">
                                     <a href="{{ url('/category/'.$category->category_id.'/edit') }}" class="btn btn-sm btn-outline-warning me-2">
                                         <i class="bi bi-pencil-square me-2"></i>Edit
@@ -58,6 +63,7 @@
                                         <i class="bi bi-trash me-2"></i>Delete
                                     </a>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

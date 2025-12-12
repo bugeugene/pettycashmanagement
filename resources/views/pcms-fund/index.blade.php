@@ -33,6 +33,9 @@
                 @if (empty($fund))
                 <div class="alert alert-warning text-center mt-2" role="alert">
                     <strong>Oops!</strong> There are no funds in the system.
+                    <a class="nav-link text-black" href="{{url('/funds/replenish')}}">
+                        <i class="bi-coin-plus me-2"></i>Deposit Fund
+                    </a>
                 </div>
                 @else
                 <div class="card-header bg-white">

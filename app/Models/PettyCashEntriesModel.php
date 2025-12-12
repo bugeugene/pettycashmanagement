@@ -95,6 +95,7 @@ class PettyCashEntriesModel extends Model
             ->orderBy('category_id')
             ->get();
     }
+
     public static function totalTransactions(){
         return self::count();
     }
@@ -109,6 +110,24 @@ class PettyCashEntriesModel extends Model
 
     public static function rejectedTotalAmount(){
         return self::where('status', 'Rejected')->sum('amount');
+    }
+
+    public static function totalByType($userId, $entryType){
+        return self::where('requester_id', $userId)
+                    ->where('entry_type', $entryType)
+                    ->sum('amount');
+    }
+
+    public static function totalRequestAmount($userId){
+        return self::totalByType($userId, 'Request');
+    }
+
+    public static function totalReplenishments($userId){
+        return self::totalByType($userId, 'Replenishment');
+    }
+
+    public static function totalAdjustments($userId){
+        return self::totalByType($userId, 'Adjust');
     }
 
     public static function recentEntries(){
@@ -127,36 +146,67 @@ class PettyCashEntriesModel extends Model
             ->orderByDesc('usage_count')
             ->first();
     }
+    
+    public static function getTopCategoryByUser($userId){
+        return DB::table('petty_cash_entries as e')
+            ->join('petty_cash_categories as cat', 'e.category_id', '=', 'cat.category_id')
+            ->select(
+                'cat.name',
+                DB::raw('COUNT(e.category_id) as usage_count'),
+                DB::raw('SUM(e.amount) as total_amount')
+            )
+            ->where('e.requester_id', $userId)
+            ->groupBy('cat.name')
+            ->orderByDesc('usage_count')
+            ->first();
+    }
+    
+    public static function recentEntriesByUser($userId, $limit = 5){
+        return self::where('requester_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->get();
+    }
 
 }
+/*
+    public function getAllEntries(){
+        return DB::select('SELECT * FROM petty_cash_entries');
+    }
 
-    // public function getAllEntries(){
-    //     return DB::select('SELECT * FROM petty_cash_entries');
-    // }
+    public function setnewEntries($amount, $purpose, $date, $entry_type, $category_id, $user_id){
+        DB::insert('INSERT INTO petty_cash_entries
+        (requester_id, category_id, purpose, amount, date, entry_type, created_by)
+        VALUES (?, ?, ?, ?, ?, ?, ?)', [$user_id, $category_id, $purpose, $amount, $date, $entry_type, $user_id]);
+    }
 
-    // public function setnewEntries($amount, $purpose, $date, $entry_type, $category_id, $user_id){
-    //     DB::insert('INSERT INTO petty_cash_entries
-    //     (requester_id, category_id, purpose, amount, date, entry_type, created_by)
-    //     VALUES (?, ?, ?, ?, ?, ?, ?)', [$user_id, $category_id, $purpose, $amount, $date, $entry_type, $user_id]);
-    // }
+    public function getSpecificEntries($entry_id){
+        $rows = DB::select('SELECT * FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+        return count($rows) > 0 ? $rows[0] : null;
+    }
 
-    // public function getSpecificEntries($entry_id){
-    //     $rows = DB::select('SELECT * FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
-    //     return count($rows) > 0 ? $rows[0] : null;
-    // }
+    public function setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status){
+        DB::update('UPDATE petty_cash_entries SET purpose = ?, amount =?, date = ?, entry_type = ?, status = ? 
+        WHERE entry_id = ?', [$purpose, $amount, $date, $entry_type, $status,$entry_id]);
+    }
 
-    // public function setUpdateEntries($entry_id, $purpose, $amount, $date, $entry_type, $status){
-    //     DB::update('UPDATE petty_cash_entries SET purpose = ?, amount =?, date = ?, entry_type = ?, status = ? 
-    //     WHERE entry_id = ?', [$purpose, $amount, $date, $entry_type, $status,$entry_id]);
-    // }
+     public function setDestroyEntries($entry_id){
+         DB::delete('DELETE FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
+    }
 
-    // // public function setDestroyEntries($entry_id){
-    // //     DB::delete('DELETE FROM petty_cash_entries WHERE entry_id = ?', [$entry_id]);
-    // // }
+    public function setDestroyEntries($entry_id){
+        $entry = $this->find($entry_id);
+        if ($entry) {
+            $entry->delete();
+        }
+    }
 
-    // public function setDestroyEntries($entry_id){
-    //     $entry = $this->find($entry_id);
-    //     if ($entry) {
-    //         $entry->delete();
-    //     }
-    // }
+        public static function totalByType($userId, $entryType){
+        return self::where('requester_id', $userId)
+                    ->where('entry_type', $entryType)
+                    ->sum('amount');
+    }
+    
+    public static function totalRequests($userId){
+        return self::totalByType($userId, 'Request');
+    }*/
