@@ -5,9 +5,15 @@
             <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
                 <div class="position-sticky">
                     <ul class="nav flex-column p-3">
+                    <li class="mb-2 fw-bold">Menu</li>
                         <li class="nav-item">
                             <a class="nav-link text-black" href="{{ url('/dashboard') }}">
                                 <i class="bi bi-speedometer me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ url('/users') }}">
+                                <i class="bi bi-arrow-left-circle me-2"></i>Back
                             </a>
                         </li>
                     </ul>

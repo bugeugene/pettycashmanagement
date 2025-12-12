@@ -107,12 +107,12 @@
                 <div class="card shadow-sm">
                     <div class="card-header bg-white">
                         <h5 class="mb-0 fw-bold">
-                            <i class="bi bi-clock-history me-2"></i> Recent Transactions
+                            <i class="bi bi-clock-history me-2"></i>Recent Transactions
                         </h5>
                     </div>
 
-                    <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
-                        <table class="table table-hover align-middle mb-0">
+                    <div class="card-body p-0">
+                        <table class="table table-hover table-bordered mb-0">
                             <thead class="table-light">
                                 <tr>
                                     <th>Date</th>

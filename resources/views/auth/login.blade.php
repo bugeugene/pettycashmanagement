@@ -38,7 +38,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary rounded-5 w-100">
-            <i class="bi bi-person-fill-check"></i> Log In
+            <i class="bi bi-person-fill-check me-2"></i>Log In
         </button>
 
         @if ($errors->any())

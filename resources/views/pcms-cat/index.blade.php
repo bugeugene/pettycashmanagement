@@ -12,6 +12,11 @@
                                 <i class="bi bi-speedometer me-2"></i>Dashboard
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ url('/category/add') }}">
+                                <i class="bi bi-folder me-2"></i>Create Category
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -31,6 +36,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +48,15 @@
                                 </td>
                                 <td>
                                     <span class="text-muted">{{ $category->description }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ url('/category/'.$category->category_id.'/edit') }}" class="btn btn-sm btn-outline-warning me-2">
+                                        <i class="bi bi-pencil-square me-2"></i>Edit
+                                    </a>
+
+                                    <a href="{{ url('/category/'.$category->category_id.'/delete') }}" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash me-2"></i>Delete
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

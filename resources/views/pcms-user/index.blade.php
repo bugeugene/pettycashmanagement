@@ -24,6 +24,11 @@
                                 <i class="bi bi-speedometer me-2"></i>Dashboard
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ url('/users/add') }}">
+                                <i class="bi bi-people me-2"></i>Create Users
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -81,6 +86,5 @@
             </main>
         </div>
     </div>
-
 
 </x-layout>

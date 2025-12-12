@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <nav id="sidebar" class="col-md-2 shadow-lg rounded p-3 d-none d-md-block bg-light sidebar min-vh-100">
+            <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
                 <div class="position-sticky">
                     <ul class="nav flex-column p-3">
                         <li class="mb-2 fw-bold">Menu</li>
@@ -80,7 +80,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100 mt-3">
-                                <i class="bi bi-plus-circle me-1"></i> Add New Entry
+                                <i class="bi bi-plus-circle me-2"></i>Add New Entry
                             </button>
                         </form>
 

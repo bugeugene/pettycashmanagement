@@ -32,18 +32,13 @@ Route::middleware(['auth'])->group(function(){
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'landingpage']);
     Route::get('/dashboard/finance', [DashboardController::class, 'finance']);
+    Route::get('/dashboard/admin', [DashboardController::class, 'admin']);
 
     Route::get('/dashboard/requester', function(){
         return view('/pcms-role/requester');
     });
 
-    // Route::get('/dashboard/finance', function(){
-    //     return view('/pcms-role/finance');
-    // });
-
-    Route::get('/dashboard/admin', function(){
-        return view('/pcms-role/admin');
-    });
+    
 
     // Users
     Route::get('/users', [PettyCashController::class, 'index']);
@@ -55,7 +50,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/users/{user_id}/destroy', [PettyCashController::class, 'destroy']);
 
     // Categories
-    Route::get('/categories', [PettyCashCategoriesController::class, 'index']);
+    Route::get('/category', [PettyCashCategoriesController::class, 'index']);
+    Route::get('/category/add', [PettyCashCategoriesController::class, 'add']);
+    Route::post('/category/create', [PettyCashCategoriesController::class, 'create']);
+    Route::get('/category/{category_id}/edit', [PettyCashCategoriesController::class, 'edit']);
+    Route::post('/category/{category_id}/update', [PettyCashCategoriesController::class, 'update']);
+    Route::get('/category/{category_id}/delete', [PettyCashCategoriesController::class, 'delete']);
+    Route::get('/category/{category_id}/destroy', [PettyCashCategoriesController::class, 'destroy']);
 
     // Entries
     Route::get('/entries', [PettyCashEntriesController::class, 'index']);
@@ -84,12 +85,5 @@ Route::middleware(['auth'])->group(function(){
 
 });
 /*
-Route::get('/category/add', [PettyCashCategoriesController::class, 'add']);
-Route::post('/category/create', [PettyCashCategoriesController::class, 'create']);
-Route::get('/category/{category_id}/edit', [PettyCashCategoriesController::class, 'edit']);
-Route::post('/category/{category_id}/update', [PettyCashCategoriesController::class, 'update']);
-Route::get('/category/{category_id}/delete', [PettyCashCategoriesController::class, 'delete']);
-Route::get('/category/{category_id}/destroy', [PettyCashCategoriesController::class, 'destroy']);
-
 Route::get('/funds/{fund_id}/edit', [PettyCashFundController::class, 'edit']);
 Route::post('/funds/{fund_id}/update', [PettyCashFundController::class, 'update']); */

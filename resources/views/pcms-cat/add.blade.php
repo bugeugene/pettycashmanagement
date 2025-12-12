@@ -1,21 +1,56 @@
 <x-layout>
 
-    <p><h3>Add new category</h3></p>
-    <form action="{{url('/category/create')}}" method="post">
-        @csrf
-        <table>
-            <tr>
-                <td><label for="name">Name:</label></td>
-                <td><input type="text" name="name" placeholder="Enter category name..."></td>
-            </tr>
-            <tr>
-                <td valign="middle"><label for="description">Description:</label></td>
-                <td><textarea name="description" cols="30" rows="5" placeholder="Write here..."></textarea></td>
-            </tr>
-        </table>
-        <button type="submit">Add Category</button>
-    </form>
-    <br>
-    <a href="{{url('/category')}}" style="text-decoration: none;">Go Back</a>
+    <div class="container-fluid">
+        <div class="row">
+
+            <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
+                <div class="position-sticky">
+                    <ul class="nav flex-column p-3">
+                        <li class="mb-2 fw-bold">Menu</li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ url('/category') }}">
+                                <i class="bi bi-arrow-left-circle me-2"></i>Back
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-10 ms-sm-auto px-4 d-flex justify-content-center py-4">
+                <div class="w-100">
+                    <div class="p-4 border rounded-3 bg-white">
+
+                        <h3 class="mb-4 text-center">Add New Category</h3>
+
+                        <form action="{{ url('/category/create') }}" method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="name">Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter category name..." required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="description">Description</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-journal-text"></i></span>
+                                    <textarea name="description" id="description" class="form-control" rows="4" placeholder="Write here..." required></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mt-3">
+                                <i class="bi bi-plus-circle me-2"></i>Add Category
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
 
 </x-layout>
