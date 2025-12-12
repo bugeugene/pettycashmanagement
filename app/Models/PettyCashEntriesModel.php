@@ -95,6 +95,38 @@ class PettyCashEntriesModel extends Model
             ->orderBy('category_id')
             ->get();
     }
+    public static function totalTransactions(){
+        return self::count();
+    }
+
+    public static function pendingCount(){
+        return self::where('status', 'Pending')->count();
+    }
+
+    public static function approvedTotalAmount(){
+        return self::where('status', 'Approved')->sum('amount');
+    }
+
+    public static function rejectedTotalAmount(){
+        return self::where('status', 'Rejected')->sum('amount');
+    }
+
+    public static function recentEntries(){
+        return self::orderBy('created_at', 'desc')->take(5)->get();
+    }
+
+    public static function getTopCategory(){
+        return DB::table('petty_cash_entries as e')
+            ->join('petty_cash_categories as cat', 'e.category_id', '=', 'cat.category_id')
+            ->select(
+                'cat.name',
+                DB::raw('COUNT(e.category_id) as usage_count'),
+                DB::raw('SUM(e.amount) as total_amount')
+            )
+            ->groupBy('cat.name')
+            ->orderByDesc('usage_count')
+            ->first();
+    }
 
 }
 

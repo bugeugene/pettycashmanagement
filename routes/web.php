@@ -11,6 +11,8 @@ use App\Http\Controllers\PettyCashFundController;
 use App\Http\Controllers\SummaryController;
 use Illuminate\Support\Facades\Route;
 
+use function Pest\Laravel\get;
+
 Route::get('/', function (){
     return view('welcome');
 });
@@ -29,14 +31,15 @@ Route::middleware(['auth'])->group(function(){
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'landingpage']);
+    Route::get('/dashboard/finance', [DashboardController::class, 'finance']);
 
     Route::get('/dashboard/requester', function(){
         return view('/pcms-role/requester');
     });
 
-    Route::get('/dashboard/finance', function(){
-        return view('/pcms-role/finance');
-    });
+    // Route::get('/dashboard/finance', function(){
+    //     return view('/pcms-role/finance');
+    // });
 
     Route::get('/dashboard/admin', function(){
         return view('/pcms-role/admin');

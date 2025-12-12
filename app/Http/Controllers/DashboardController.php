@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PettyCashEntriesModel;
-use Illuminate\Http\Request;
+use App\Models\PettyCashFundModel;
 use Illuminate\Support\Facades\Auth;
+
 
 class DashboardController extends Controller
 {
@@ -18,4 +19,21 @@ class DashboardController extends Controller
         default     => abort(403, 'Unknown role'),
         };
     }
+    
+    public function finance(){
+        $fundModel = new PettyCashFundModel();
+        $fund = $fundModel->getFund();
+        $currentBalance = $fund && property_exists($fund, 'current_balance') ? $fund->current_balance : 0;
+
+        return view('pcms-role.finance', [
+            'total'   => PettyCashEntriesModel::totalTransactions(),
+            'pending' => PettyCashEntriesModel::pendingCount(),
+            'approvedAmount' => PettyCashEntriesModel::approvedTotalAmount(),
+            'rejectedAmount' => PettyCashEntriesModel::rejectedTotalAmount(),
+            'recentEntries'  => PettyCashEntriesModel::recentEntries(),
+            'topCategory'    => PettyCashEntriesModel::getTopCategory(),
+            'currentBalance' => $currentBalance
+        ]);
+    }
+
 }
