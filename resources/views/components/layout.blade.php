@@ -26,6 +26,14 @@
                 </a>
 
                 <div class="d-flex align-items-center gap-2">
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">
+                        Login
+                    </a>
+                    <a href="{{ route('register') }}" class="btn btn-light btn-sm">
+                        Register
+                    </a>
+                @endguest
                     @auth
                         <span class="text-light fw-bold">Hi, {{ auth()->user()->name }}</span>
 
