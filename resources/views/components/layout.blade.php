@@ -26,14 +26,15 @@
                 </a>
 
                 <div class="d-flex align-items-center gap-2">
-                @guest
-                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">
-                        Login
-                    </a>
-                    <a href="{{ route('register') }}" class="btn btn-light btn-sm">
-                        Register
-                    </a>
-                @endguest
+                    @guest
+                        <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}" class="btn btn-light btn-sm">
+                            Register
+                        </a>
+                    @endguest
+                    
                     @auth
                         <span class="text-light fw-bold">Hi, {{ auth()->user()->name }}</span>
 
@@ -51,11 +52,11 @@
         {{ $slot }}
     </main>
 
-    <footer class="bg-info text-light text-center py-4 mt-auto">
+    {{-- <footer class="bg-info text-light text-center py-4 mt-auto">
         <div class="container">
             &copy; {{ date('Y') }} Petty Cash Management System. All Rights Reserved.
         </div>
-    </footer>
+    </footer> --}}
     
 </body>
 </html>

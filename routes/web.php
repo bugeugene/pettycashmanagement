@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 
 use function Pest\Laravel\get;
 
+// Route::get('/', function (){
+//     return view('welcome');
+// });
 Route::get('/', function (){
-    return view('welcome');
+    return view('home');
 });
 
 /* Route::[resource]('/[uri]', function (){})
