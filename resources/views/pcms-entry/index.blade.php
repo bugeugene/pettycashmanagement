@@ -1,5 +1,11 @@
 <x-layout>
 
+    @if(session('success'))
+    <div class="alert alert-success mt-2">
+        {{ session('success') }}
+    </div>
+    @endif
+    
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebar" class="col-md-2 p-3 d-none d-md-block bg-light sidebar min-vh-100">
